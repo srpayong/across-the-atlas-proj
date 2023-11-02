@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;700;900&display=swap');
+
+:root {
+  --primaryColor: hsl(0, 0%, 100%);
+  --primaryColorLight: hsl(13, 100%, 95%);
+  --bgColor: hsl(0, 0%, 0%);
+  --formColor: hsl(20, 42%, 87%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 100%);
+  --greyText: hsl(0, 0%, 100%);
+  --inputColor: hsl(330, 12%, 97%);
+  --cardColor: hsl(14, 25%, 90%);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 2.2rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: 0.938rem;
+  --smallFontSize: 0.813rem;
+  --smallestFontSize: 0.75rem;
+  --borderRadius: 3rem;
+}
+
+.accordionContainer {
+  .title {
+    font-size: var(--normalFontSize);
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 10px;
+    justify-content: space-between;
+    background: rgb(81, 78, 78);
+
+    span {
+      cursor: pointer;
+      .icon {
+        font-size: 1.2rem;
+        color: var(--blackColor);
+      }
+    }
+  }
+  .description {
+    font-size: var(--smallFontSize);
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    white-space: pre-line;
+    height: 0;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    padding: 0 1rem;
+    background: var(--cardColor);
+    border-radius: 0 0 10px 10px;
+    color: var(--blackColor);
+  }
+  .show {
+    height: 140px;
+    opacity: 1;
+  }
+  .titleAc {
+    background: var(--primaryColorLight);
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+.questions {
+  .secHeading {
+    h3,
+    h4 {
+      padding-bottom: 1.5rem;
+    }
+    p {
+      font-size: var(--smallFontSize);
+      color: var(--blackColor);
+      padding-bottom: 1rem;
+    }
+  }
+  .form {
+    .formContent {
+      gap: 1rem;
+      input,
+      textarea {
+        background: var(--cardColor);
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        outline: none;
+        border-radius: var(--borderRadius);
+        font-size: var(--smallFontSize);
+        &::placeholder {
+          font-size: var(--smallFontSize);
+          color: var(--blackColor);
+        }
+      }
+
+      textarea {
+        height: 100px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+// MEDIA QUERIES
+@media screen and (min-width: 640px) {
+  .accordionContainer {
+    .title {
+      font-size: var(--h3FontSize);
+
+      span {
+        .icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .description {
+      font-size: var(--normalFontSize);
+    }
+    .show {
+      height: 150px;
+    }
+  }
+
+  .questions {
+    .secHeading {
+      h3,
+      h4 {
+        font-size: var(--h2FontSize);
+      }
+
+      p {
+        font-size: var(--normalFontSize);
+      }
+    }
+
+    .secContainer {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: flex-start;
+      gap: 2rem;
+      .form {
+        .formContent {
+          input,
+          textarea {
+            font-size: var(--normalFontSize);
+            &::placeholder {
+              font-size: var(--normalFontSize);
+              color: var(--blackColor);
+            }
+          }
+
+          textarea {
+            height: 100px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .accordionContainer {
+    .title {
+      font-size: var(--h3FontSize);
+
+      span {
+        .icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .description {
+      font-size: var(--normalFontSize);
+    }
+    .show {
+      height: 150px;
+    }
+  }
+
+  .questions {
+    .secHeading {
+      h3,
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: var(--h3FontSize);
+      }
+    }
+
+    .secContainer {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: flex-start;
+      gap: 3rem;
+      .form {
+        .formContent {
+          input,
+          textarea {
+            font-size: var(--normalFontSize);
+            &::placeholder {
+              font-size: var(--normalFontSize);
+              color: var(--blackColor);
+            }
+          }
+
+          textarea {
+            height: 100px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}

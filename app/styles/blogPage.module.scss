@@ -1,0 +1,293 @@
+.mainSection {
+  display: flex;
+  flex-direction: column;
+
+  .blogPage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--main-color);
+    padding: 80px 20px;
+
+    .blogInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+
+      .blogHeader {
+        text-align: center;
+      }
+
+      .imageBox {
+        height: 300px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        border: 1px solid var(--bg-color);
+        border-radius: 10px;
+
+        .singleBlogImage {
+          height: 100%;
+          width: 100%;
+          border-radius: 10px;
+          object-fit: cover;
+        }
+      }
+
+      .moreInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 8px 0px;
+        width: 100%;
+        min-height: 70px;
+
+        .linkAndFollow {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+
+          .followButtonContainer {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+              border: none;
+              display: flex;
+              justify-content: flex-end;
+              background-color: transparent;
+
+              .followButton {
+                background-color: var(--secondary-text-color);
+                color: white;
+                border: none;
+                padding: 6px 16px;
+                border-radius: 5px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                cursor: pointer;
+              }
+
+              .followedButton {
+                background-color: rgb(85, 141, 3);
+                color: black;
+                border: none;
+                padding: 6px 16px;
+                border-radius: 5px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                cursor: pointer;
+              }
+            }
+
+            .followError {
+              color: red;
+            }
+          }
+        }
+
+        .locationAndBlogger {
+          display: flex;
+          justify-content: space-between;
+
+          .bloggerName {
+            font-style: italic;
+
+            .bloggerLink {
+              position: relative;
+
+              &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                border-radius: 4px;
+                background-color: #18272f;
+                bottom: -1%;
+                left: 0;
+                transform-origin: right;
+                transform: scaleX(0);
+                transition: transform 0.3s ease-in-out;
+              }
+
+              &:hover::before {
+                transform-origin: left;
+                transform: scaleX(1);
+              }
+            }
+          }
+        }
+
+        .blogBio {
+          margin-top: 8px;
+          line-height: 1.25;
+        }
+      }
+    }
+
+    .toursFeed {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .toursContainer {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+
+        .tourCard {
+          border: 0.5px solid var(--main-color);
+          border-radius: 10px;
+          background-color: white;
+          width: 100%;
+
+          .titleSection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+
+            .tourTitle {
+              font-size: 1.15rem;
+              letter-spacing: 1.5px;
+              text-transform: uppercase;
+            }
+          }
+
+          .tourImage {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+
+          .tourDescription {
+            padding: 8px;
+            font-size: 0.9rem;
+            line-height: 1.25;
+          }
+
+          .tourCategory {
+            font-size: 0.75rem;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .borderImage {
+    width: 100%;
+    object-fit: cover;
+    margin: 0px;
+  }
+
+  .reviewsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 20px;
+
+    h2 {
+      font-size: 1.15rem;
+      text-align: center;
+    }
+
+    .reviewInput {
+      display: flex;
+      width: 100%;
+
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+
+        label {
+          width: 100%;
+
+          input {
+            width: 100%;
+            height: 50px;
+            padding-left: 16px;
+            padding-right: 50px;
+            border-radius: 80px;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            font-size: 1.25rem;
+          }
+        }
+
+        button {
+          position: absolute;
+          top: 52%;
+          right: 1%;
+          transform: translate(0%, -50%);
+          border: none;
+          background-color: transparent;
+          font-size: 1.25rem;
+          color: var(--secondary-text-color);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .reviewsContainer {
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.401);
+      max-height: 500px;
+      overflow: scroll;
+
+      .singleReviewCard {
+        display: flex;
+        gap: 20px;
+        padding: 20px 0px;
+
+        .userImage {
+          height: 60px;
+          width: 60px;
+        }
+
+        .reviews {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          h4 {
+            text-transform: capitalize;
+          }
+
+          .reviewContent {
+            background-color: var(--bg-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loveButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  .heartButton {
+    font-size: 0.9rem;
+  }
+
+  .heartButtonRed {
+    color: red;
+  }
+}

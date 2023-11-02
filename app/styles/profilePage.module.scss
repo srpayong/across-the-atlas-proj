@@ -1,0 +1,61 @@
+
+.profilePage {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 20px 80px;
+  gap: 60px;
+
+  .profileInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 16px;
+    width: 100%;
+
+
+    .imageBox {
+      height: 200px;
+      width: 40%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: 0.1px solid var(--main-color);
+
+    }
+
+    .moreInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 8px;
+      width: 60%;
+    }
+  }
+
+  .followingBloggers {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .favouriteContainer {
+      width: 100%;
+      overflow: scroll;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 10px;
+      margin-top: 40px;
+
+
+      div {
+        height: 300px;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+      }
+    }
+  }
+}

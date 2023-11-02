@@ -1,0 +1,188 @@
+.heroSection {
+  height: 70vh;
+  width: 100vw;
+  background-image: url(../../public/home/coverphoto1.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 0px 20px;
+  text-align: center;
+  position: relative;
+
+  h1,
+  p,
+  .heroLink {
+    animation: floatup 2s ease-in-out;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+  }
+
+  h1 {
+    font-size: 1rem;
+    width: 250px;
+  }
+
+  p {
+    margin-top: 16px;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  .heroLink {
+    border-radius: 40px;
+    width: 200px;
+    padding: 6px 0px;
+    background-color: var(--main-color);
+
+    &:hover {
+      background-color: var(--bg-color);
+    }
+
+    &:active {
+      transform: scale(3);
+      transition: transform 0.5s ease-in-out;
+    }
+  }
+
+  .inBetween {
+    background-color: var(--bg-color);
+    width: 100%;
+    height: 50px;
+    border-radius: 50px 50px 0px 0px;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+}
+
+@keyframes floatup {
+  0% {
+    transform: translateY(40px);
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+// ABOUT SECTION /////////////////
+.aboutSection {
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+
+  .aboutInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+    animation: floatup 2s ease-in-out;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+
+    .topLeftContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .aboutTitle {
+        font-size: 1.15rem;
+      }
+
+      .aboutDescription {
+        font-size: 0.8rem;
+      }
+    }
+
+    .topBottomContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .iconsSection {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .icon {
+          width: 50px;
+          height: 50px;
+        }
+
+        .iconInfo {
+          text-align: start;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  .imageSection {
+    height: 200px;
+
+    .aboutImage {
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// // DISCOVER SECTION //////
+.discoverSection {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 24px;
+  padding: 50px 20px;
+
+  .imageSection {
+    height: 250px;
+
+    .bloggerImage {
+      border-radius: 450px 450px 0px 0px;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .infoSection {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+    .discoverTitle {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .discoverInfo {
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .exploreLink {
+      border-radius: 20px;
+      padding: 8px 20px;
+      width: 100%;
+      text-align: center;
+      background-color: rgb(255, 255, 255);
+
+      &:hover {
+        border: 1px solid gray;
+      }
+    }
+  }
+}
