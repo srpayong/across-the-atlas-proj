@@ -33,8 +33,8 @@ export default function NavBar() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/tours" className={styles.discoverList}>
-                    Tours
+                  <Link href="/trips" className={styles.discoverList}>
+                    Trips
                   </Link>
                 </li>
               </ul>

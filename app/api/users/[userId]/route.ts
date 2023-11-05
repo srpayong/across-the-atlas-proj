@@ -15,7 +15,7 @@ type UserResponseBodyPut = { user: User } | Error;
 const userSchema = z.object({
   username: z.string(),
   email: z.string(),
-  fullName: z.string(),
+  profileName: z.string(),
   bio: z.string(),
   imageUrl: z.string(),
 });
@@ -108,7 +108,7 @@ export async function PUT(
     userId,
     result.data.username,
     result.data.email,
-    result.data.fullName,
+    result.data.profileName,
     result.data.bio,
     result.data.imageUrl,
   );

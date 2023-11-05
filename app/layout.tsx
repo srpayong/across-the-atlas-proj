@@ -9,7 +9,6 @@ import { RiAccountPinCircleLine } from 'react-icons/ri';
 import { getUserBySessionToken } from '../database/users';
 import { logout } from './(auth)/logout/actions';
 import { capitalizeName } from './[username]/capitalizedName';
-import Footer from './Components/Footer/Footer';
 import { LogoutButton } from './Components/LogoutButton';
 import NavBar from './Components/NavBar';
 import styles from './styles/Navbar.module.scss';
@@ -58,10 +57,10 @@ export default async function RootLayout({ children }: LayoutProps) {
             {user ? (
               <div className={styles.loggedIn}>
                 <Link
-                  href={`/${user.fullName.toLowerCase()}`}
+                  href={`/${user.profileName.toLowerCase()}`}
                   className={styles.desktopLoggedInLink}
                 >
-                  {capitalizeName(user.fullName)}
+                  {capitalizeName(user.profileName)}
                 </Link>{' '}
                 |
                 <Link
@@ -127,7 +126,6 @@ export default async function RootLayout({ children }: LayoutProps) {
           </div>
         </nav>
         {children}
-        <Footer />
       </body>
     </html>
   );

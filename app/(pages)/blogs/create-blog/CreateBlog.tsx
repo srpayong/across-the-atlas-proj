@@ -137,7 +137,7 @@ export default function CreateBlog(props: Props) {
           name="file"
           ref={fileInputRef}
           onChange={handleOnChange}
-          className={styles.blogPicInput}
+          className={styles.blogpPicInput}
         />
       </label>
 

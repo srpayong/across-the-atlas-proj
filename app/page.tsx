@@ -4,10 +4,7 @@ import Link from 'next/link';
 import coverphoto1 from '../public/home/coverphoto1.jpeg';
 import coverphoto2 from '../public/home/coverphoto2.jpeg';
 import coverphoto3 from '../public/home/coverphoto3.jpeg';
-import coverphoto4 from '../public/home/coverphoto4.jpeg';
 import coverphoto5 from '../public/home/coverphoto5.jpeg';
-// import Portfolio from './Components/Portfolio/Portfolio';
-// import Questions from './Components/Questions/Questions';
 import styles from './styles/homepage.module.scss';
 
 const domine = Domine({ subsets: ['latin'] });
@@ -43,8 +40,10 @@ export default function Home() {
                 alt="explore icon"
               />
               <p className={styles.iconInfo}>
-                A website that lets you share your own travels and experiences
-                wherever you are in the world.{' '}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi
               </p>
             </div>
             <div className={styles.iconsSection}>
@@ -54,7 +53,10 @@ export default function Home() {
                 alt="discover icon"
               />
 
-              <p className={styles.iconInfo}>Lorem Ipsum</p>
+              <p className={styles.iconInfo}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
             </div>
             <div className={styles.iconsSection}>
               <Image
@@ -62,14 +64,19 @@ export default function Home() {
                 src={coverphoto3}
                 alt="connect icon"
               />
-              <p className={styles.iconInfo}> Recent Travel</p>
+              <p className={styles.iconInfo}>
+                {' '}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam
+              </p>
             </div>
           </div>
         </div>
-        {/* <Portfolio /> */}
+
         <div className={styles.imageSection}>
           <Image
-            src={coverphoto4}
+            src={coverphoto1}
             alt="Lorem Ipsum"
             width={400}
             height={400}
@@ -93,10 +100,14 @@ export default function Home() {
           <h2 className={`${domine.className} ${styles.discoverTitle}`}>
             Lorem Ipsum
           </h2>
-          <p className={styles.discoverInfo}>Latest travel tips</p>
+          <p className={styles.discoverInfo}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          </p>
 
           <Link href="/blogs">
-            <p className={styles.exploreLink}>View all bloggers</p>
+            <p className={styles.exploreLink}>View all blogs </p>
           </Link>
           {/* <Questions /> */}
         </div>

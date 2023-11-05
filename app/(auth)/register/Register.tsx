@@ -12,7 +12,7 @@ export default function RegisterForm() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [profileName, setProfileName] = useState('');
   const [bio, setBio] = useState('');
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [passwordShown, setPasswordShown] = useState(false);
@@ -66,13 +66,22 @@ export default function RegisterForm() {
         },
       ).then((r) => r.json());
 
+      console.log('submitting data:', {
+        username,
+        email,
+        password,
+        profileName,
+        bio,
+        imageUrl: profilePic.secure_url,
+      });
+
       const response = await fetch('/api/register', {
         method: 'POST',
         body: JSON.stringify({
           username,
           email,
           password,
-          fullName,
+          profileName,
           bio,
           imageUrl: profilePic.secure_url,
         }),
@@ -113,14 +122,14 @@ export default function RegisterForm() {
           </div>
 
           <div>
-            <label htmlFor="fullName">
-              Full Name <span>*</span>
+            <label htmlFor="profileName">
+              Profile Name <span>*</span>
             </label>
             <input
-              data-test-id="register-fullName"
-              id="fullName"
-              value={fullName}
-              onChange={(event) => setFullName(event.currentTarget.value)}
+              data-test-id="register-profile_name"
+              id="profileName"
+              value={profileName}
+              onChange={(event) => setProfileName(event.currentTarget.value)}
             />
           </div>
 

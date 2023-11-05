@@ -7,14 +7,14 @@ import { VscLocation } from 'react-icons/vsc';
 import { getBlogById } from '../../../../database/blogs';
 import { getFavourites } from '../../../../database/favourites';
 import { getReviewsWithUserInfo } from '../../../../database/reviews';
-import { getToursWithInfo } from '../../../../database/tours';
+import { getTripsWithInfo } from '../../../../database/trips';
 import { getUserBySessionToken } from '../../../../database/users';
 import { domine } from '../../../layout';
 import styles from '../../../styles/blogPage.module.scss';
 import AddFavourites from './AddFavourites';
 import AddReviews from './AddReviews';
-import AddToursForm from './AddTours';
-import LikeTour from './LikeTours';
+import AddTripsForm from './AddTrips';
+import LikeTrip from './LikeTrips';
 
 export const dynamic = 'force-dynamic';
 
@@ -46,8 +46,8 @@ export default async function SingleBlogPage(props) {
   // to get reviews from users
   const userReviews = await getReviewsWithUserInfo(singleBlog.id);
 
-  // display tours from this blog
-  const blogTours = await getToursWithInfo(singleBlog.id);
+  // display trips from this blog
+  const blogTrips = await getTripsWithInfo(singleBlog.id);
 
   return (
     <main className={styles.mainSection}>
@@ -86,34 +86,34 @@ export default async function SingleBlogPage(props) {
           </div>
         </div>
 
-        {/* ************* TOURS SECTION ************* */}
-        <div className={styles.toursFeed}>
-          <h2 className={domine.className}>Tours Feed</h2>
-          <div className={styles.toursContainer}>
-            {blogTours.map((tour) => {
+        {/* ************* TRIPS SECTION ************* */}
+        <div className={styles.tripsFeed}>
+          <h2 className={domine.className}>Trips Feed</h2>
+          <div className={styles.tripsContainer}>
+            {blogTrips.map((trip) => {
               return (
                 <div
-                  key={`tour-div-${tour.tourId}`}
-                  className={styles.tourCard}
+                  key={`trip-div-${trip.tripId}`}
+                  className={styles.tripCard}
                 >
                   <div className={styles.titleSection}>
-                    <p className={`${styles.tourTitle} ${domine.className}`}>
-                      {tour.tourName}
+                    <p className={`${styles.tripTitle} ${domine.className}`}>
+                      {trip.tripName}
                     </p>
-                    <LikeTour />
+                    <LikeTrip />
                   </div>
                   <Image
-                    src={tour.tourImageUrl}
+                    src={trip.tripImageUrl}
                     width={100}
                     height={100}
-                    alt="tour"
-                    className={styles.tourImage}
+                    alt="trip"
+                    className={styles.tripImage}
                   />
-                  <p className={styles.tourDescription}>
-                    {tour.tourDescription}
+                  <p className={styles.tripDescription}>
+                    {trip.tripDescription}
                   </p>
-                  <p className={styles.tourCategory}>
-                    <MdOutlineCategory /> {tour.tourCategory}
+                  <p className={styles.tripCategory}>
+                    <MdOutlineCategory /> {trip.tripCategory}
                   </p>
                 </div>
               );
@@ -165,9 +165,9 @@ export default async function SingleBlogPage(props) {
         </div>
       </div>
 
-      {/* ************* TOURS FORM SECTION (for blog owner only)************* */}
+      {/* ************* TRIPS FORM SECTION (for blog owner only)************* */}
       <div>
-        <AddToursForm singleBlog={singleBlog} user={user} blog={singleBlog} />
+        <AddTripsForm singleBlog={singleBlog} user={user} blog={singleBlog} />
       </div>
     </main>
   );

@@ -4,9 +4,9 @@ export type User = {
   id: number;
   username: string;
   email: string;
-  fullName: string;
+  profileName: string;
   bio: string;
-  image_url: string;
+  imageUrl: string;
 };
 
 export async function up(sql: Sql) {
@@ -16,9 +16,9 @@ export async function up(sql: Sql) {
       username varchar(80) NOT NULL UNIQUE,
       email varchar(80) NOT NULL,
       password_hash varchar(80) NOT NULL,
-      full_name varchar(40) NOT NULL,
-      bio text NOT NULL,
-      image_url text NOT NULL
+      profile_name varchar(40) NOT NULL,
+      bio varchar(500) NOT NULL,
+      image_url varchar(500) NOT NULL
     )
   `;
 }

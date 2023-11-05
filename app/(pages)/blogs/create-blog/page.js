@@ -36,7 +36,7 @@ export default async function CreateBlogPage() {
     <main className={styles.createBlogPage}>
       <div className={styles.pageTitle}>
         <h1 className={domine.className}>
-          Hello <span>{user.fullName}</span>
+          Hello <span>{user.profileName}</span>
         </h1>
         <h4>Create an account</h4>
       </div>

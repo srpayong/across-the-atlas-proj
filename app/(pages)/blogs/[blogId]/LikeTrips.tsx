@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AiOutlineHeart, AiTwotoneHeart } from 'react-icons/ai';
 import styles from '../../../styles/blogPage.module.scss';
 
-export default function LikeTour() {
+export default function LikeTrip() {
   const [like, setLike] = useState(false);
 
   const toggleFollowButton = () => {

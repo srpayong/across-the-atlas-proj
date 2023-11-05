@@ -4,14 +4,14 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { Blog } from '../../../../migrations/00002-createTableBlogs';
-import styles from '../../../styles/AddToursForm.module.scss';
+import styles from '../../../styles/AddTripsForm.module.scss';
 
 type Props = {
   user: { id: number };
   blog: Blog;
 };
 
-export default function AddToursForm(props: Props) {
+export default function AddTripsForm(props: Props) {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
@@ -54,7 +54,7 @@ export default function AddToursForm(props: Props) {
       }
       formData.append('upload_preset', 'uploads');
 
-      const tourPic = await fetch(
+      const tripPic = await fetch(
         `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
         {
           method: 'POST',
@@ -62,7 +62,7 @@ export default function AddToursForm(props: Props) {
         },
       ).then((r) => r.json());
 
-      const response = await fetch('/api/tours', {
+      const response = await fetch('/api/trips', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export default function AddToursForm(props: Props) {
           name,
           category,
           description,
-          imageUrl: tourPic.secure_url,
+          imageUrl: tripPic.secure_url,
         }),
       });
 
@@ -90,11 +90,11 @@ export default function AddToursForm(props: Props) {
   };
 
   return (
-    <div className={styles.formComtainer}>
+    <div className={styles.formContainer}>
       {props.user.id === props.blog.userId && (
         <div className={styles.innerContainer}>
-          <h4>Upload a tour</h4>
-          <form onSubmit={handleOnSubmit} className={styles.uploadTourForm}>
+          <h4>Upload a trip</h4>
+          <form onSubmit={handleOnSubmit} className={styles.uploadTripForm}>
             <div className={styles.leftSide}>
               <div>
                 <label htmlFor="name">Name</label>
@@ -134,15 +134,15 @@ export default function AddToursForm(props: Props) {
                 />
               </div>
 
-              <div className={styles.tourPic}>
-                <label htmlFor="tour">Tour picture</label>
+              <div className={styles.tripPic}>
+                <label htmlFor="trip">Trip picture</label>
                 <input
-                  id="tour"
+                  id="trip"
                   type="file"
                   name="file"
                   ref={fileInputRef}
                   onChange={handleOnChange}
-                  className={styles.tourPicInput}
+                  className={styles.tripPicInput}
                 />
               </div>
             </div>
@@ -154,17 +154,17 @@ export default function AddToursForm(props: Props) {
                     src={imageUrl}
                     height={100}
                     width={100}
-                    alt="Tour avatar"
-                    className={styles.tourImage}
+                    alt="Trip avatar"
+                    className={styles.tripImage}
                   />
                 )}
               </div>
 
-              <button>Create tour</button>
+              <button>Create trip</button>
               <div style={{ color: 'red' }}>{error}</div>
               {success && (
                 <figure className={styles.notification}>
-                  <div className={styles.notificationBody}>Tour created!</div>
+                  <div className={styles.notificationBody}>Trip created!</div>
                   <div className={styles.notificationProgress} />
                 </figure>
               )}

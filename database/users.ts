@@ -4,6 +4,7 @@ import { sql } from './connect';
 
 export type UserWithPasswordHash = User & {
   passwordHash: string;
+  imageUrl: string;
 };
 
 export const getUsers = cache(async () => {
@@ -12,7 +13,7 @@ export const getUsers = cache(async () => {
     id,
     username,
     email,
-    full_name,
+    profile_name,
     bio,
     image_url
   FROM
@@ -27,20 +28,20 @@ export const createUser = cache(
     username: string,
     email: string,
     passwordHash: string,
-    fullName: string,
+    profileName: string,
     bio: string,
-    image_url: string,
+    imageUrl: string,
   ) => {
     const [user] = await sql<User[]>`
     INSERT INTO users
-      (username, email, password_hash, full_name, bio, image_url)
+      (username, email, password_hash, profile_name, bio, image_url)
     VALUES
-      (${username.toLowerCase()}, ${email}, ${passwordHash}, ${fullName}, ${bio}, ${image_url})
+      (${username.toLowerCase()}, ${email}, ${passwordHash}, ${profileName}, ${bio}, ${imageUrl})
     RETURNING
       id,
       username,
       email,
-      full_name,
+      profile_name,
       bio,
       image_url
  `;
@@ -103,6 +104,7 @@ export const getUsersWithLimitAndOffsetBySessionToken = cache(
           sessions.token = ${token} AND
           sessions.expiry_timestamp > now()
 
+
         )
       LIMIT ${limit}
       OFFSET ${offset}
@@ -118,7 +120,7 @@ export const getUserBySessionToken = cache(async (token: string) => {
     users.id,
     users.username,
     users.email,
-    users.full_name,
+    users.profile_name,
     users.bio,
     users.image_url
   FROM
@@ -140,7 +142,7 @@ export const updateUserById = cache(
     id: number,
     username: string,
     email: string,
-    fullName: string,
+    profileName: string,
     bio: string,
     imageUrl: string,
   ) => {
@@ -149,7 +151,7 @@ export const updateUserById = cache(
       SET
         username = ${username.toLowerCase()},
         email = ${email},
-        full_name = ${fullName},
+        profile_name = ${profileName},
         bio = ${bio},
         image_url = ${imageUrl}
       WHERE

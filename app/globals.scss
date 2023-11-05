@@ -1,139 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Domine:wght@400;500;600;700&family=Questrial&display=swap');
 
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
 }
 
-root {
-  --primaryColor: whitesmoke;
-  --bgColor: hsl(0, 7%, 3%);
-  --formColor: hsl(0, 0%, 100%);
-  --whiteColor: hsl(0, 0%, 100%);
-  --blackColor: hsl(0, 0%, 100%);
-  --greyText: hsl(0, 100%, 99%);
-  --inputColor: hsl(330, 12%, 97%);
-  --cardColor: hsl(300, 3%, 94%);
+:root {
+  --body-text: 'Questrial', sans-serif;
+  --title-text: 'Domine', sans-serif;
+  --logo-text: 'Birthstone', sans-serif;
 
-  --biggestFontSize: 2.5rem;
-  --h1FontSize: 2rem;
-  --h2FontSize: 1.25rem;
-  --h3FontSize: 1rem;
-  --normalFontSize: 0.938rem;
-  --smallFontSize: 0.813rem;
-  --smallestFontSize: 0.75rem;
-  --borderRadius: 3rem;
+  --bg-color: #fdfaf8;
+  --main-color: #f2e3d6;
+  --primary-text-color: #000;
+  --secondary-text-color: #38525c;
+  --accent-color: #ebfbfe;
 }
 
 body {
-  background: black;
-  color: white;
+  background-color: var(--bg-color);
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-p {
-  font-size: var(--smallFontSize);
-}
-
-html {
-  font-size: 90%;
-}
-
-a {
-  text-decoration: none;
+button:active {
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 li {
   list-style: none;
+  position: relative;
+  text-decoration: none;
 }
 
-.icon {
-  font-size: var(--h2FontSize);
-  cursor: pointer;
-}
-
-img,
-video {
-  height: auto;
-  width: 100%;
-}
-
-.btn {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: var(--borderRadius);
-  padding: 0.8rem 1rem;
-  color: var(--whiteColor);
-  background: var(--primaryColor);
-
-  &:hover {
-    transition: 0.3s ease;
-  }
-}
-.secTitle {
-  display: none;
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 25px;
-  font-weight: 700;
-  color: white;
-  flex-direction: column;
-  gap: 1 rem;
-
-  p {
-    color: white;
-    font-size: var(--normalFontSize);
-    font-weight: 400;
-  }
-}
-
-.secHeading {
-  padding-bottom: 1.5rem;
-}
-
-.btn .icon {
-  margin-left: 0.5rem;
-}
-
-// .btn:hover{
-//   color: var(--primaryColor);
-//   background: var(--primaryColorLight);
-// }
-
-.section {
-  padding: 4rem 0 2rem;
-}
-
-.container {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-::selection {
-  background: var(--primaryColorLight);
-  color: var(--primaryColorLight);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  background: var(--primaryColorLight);
-}
-
-::-webkit-scrollbar-thumb {
-  width: 10px;
-  background: white;
-  border-radius: rgb(83, 32, 159);
+a {
+  text-decoration: none;
+  color: #000;
 }

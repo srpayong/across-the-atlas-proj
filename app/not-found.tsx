@@ -6,11 +6,5 @@ export const metadata = {
 };
 
 export default function RootNotFound() {
-  return (
-    <div className={styles.notFoundPage}>
-      Sorry, page not found!
-      <br />
-      Please visit a page that exists
-    </div>
-  );
+  return <div className={styles.notFoundPage}>Page not found!</div>;
 }

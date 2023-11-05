@@ -10,17 +10,17 @@ type Props = {
     id: number;
     username: string;
     email: string;
-    fullName: string;
+    profileName: string;
     bio: string;
-    imageUrl?: string;
+    imageUrl: string;
   };
   user: {
     id: number;
     username: string;
     email: string;
-    fullName: string;
+    profileName: string;
     bio: string;
-    imageUrl?: string;
+    imageUrl: string;
   };
 };
 
@@ -33,9 +33,9 @@ export default function ProfilePage(props: Props) {
   return (
     <div className={styles.profilePageContainer}>
       <div className={styles.imageContainer}>
-        {!props.user.imageUrl ? (
+        {props.user.imageUrl ? (
           <Image
-            src="/images/avatar.png"
+            src="/images/avatar.jpeg"
             width={100}
             height={100}
             alt="Profile avatar"
@@ -59,7 +59,7 @@ export default function ProfilePage(props: Props) {
 
       <div className={styles.nameContainer}>
         <h1 className={domine.className}>
-          {capitalizeName(props.user.fullName)}
+          {capitalizeName(props.user.profileName)}
         </h1>
       </div>
       <div>

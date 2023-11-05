@@ -4,12 +4,12 @@ import { Domine } from 'next/font/google';
 import Image from 'next/image';
 import { useState } from 'react';
 import { MdOutlineCategory } from 'react-icons/md';
-import { Tour } from '../../../migrations/00007-createTableTours';
-import styles from '../../styles/toursPage.module.scss';
-import LikeTour from '../blogs/[blogId]/LikeTours';
+import { Trip } from '../../../migrations/00007-createTableTrips';
+import styles from '../../styles/tripsPage.module.scss';
+import LikeTrip from '../blogs/[blogId]/LikeTrips';
 
 type Props = {
-  tours: Tour[];
+  trips: Trip[];
 };
 
 const domine = Domine({
@@ -17,15 +17,15 @@ const domine = Domine({
   display: 'swap',
 });
 
-export default function FilteredToursPage({ tours }: Props) {
+export default function FilteredTripsPage({ trips }: Props) {
   const [category, setCategory] = useState('');
 
-  const filterToursByCategory = category
-    ? tours.filter((tour) => tour.category === category)
-    : tours;
+  const filterTripsByCategory = category
+    ? trips.filter((trip) => trip.category === category)
+    : trips;
 
   return (
-    <main className={styles.toursPageContainer}>
+    <main className={styles.tripsPageContainer}>
       <div className={styles.filterOptions}>
         <select
           value={category}
@@ -34,7 +34,7 @@ export default function FilteredToursPage({ tours }: Props) {
           }}
         >
           <option value="">Filter by category</option>
-          <option value="">All Tours</option>
+          <option value="">All Trips</option>
           <option value="Wildlife & Safari">Wildlife & Safari</option>
           <option value="Food and Drink">Food and Drink</option>
           <option value="Adventure">Adventure</option>
@@ -43,30 +43,30 @@ export default function FilteredToursPage({ tours }: Props) {
           <option value="Hiking & Trekking">Hiking & Trekking</option>
         </select>
       </div>
-      <div className={styles.tourListContainer}>
-        {filterToursByCategory.map((tour) => {
+      <div className={styles.tripListContainer}>
+        {filterTripsByCategory.map((trip) => {
           return (
-            <div key={`blog-div-${tour.id}`} className={styles.tourCard}>
+            <div key={`blog-div-${trip.id}`} className={styles.tripCard}>
               <div className={styles.topCardSection}>
                 <div className={styles.cardHeader}>
-                  <p className={`${styles.tourName} ${domine.className}`}>
-                    {tour.name}
+                  <p className={`${styles.tripName} ${domine.className}`}>
+                    {trip.name}
                   </p>
-                  <LikeTour />
+                  <LikeTrip />
                 </div>
                 <div className={styles.imageContainer}>
                   <Image
-                    src={tour.imageUrl}
+                    src={trip.imageUrl}
                     width={100}
                     height={100}
                     alt="Blog avatar"
-                    className={styles.tourImage}
+                    className={styles.tripImage}
                   />
                 </div>
               </div>
               <div className={styles.bottomSection}>
                 <p>
-                  <MdOutlineCategory /> {tour.category}
+                  <MdOutlineCategory /> {trip.category}
                 </p>
               </div>
             </div>

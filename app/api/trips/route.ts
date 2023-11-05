@@ -1,17 +1,17 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createTour } from '../../../database/tours';
+import { createTrip } from '../../../database/trips';
 import { getUserBySessionToken } from '../../../database/users';
-import { Tour } from '../../../migrations/00007-createTableTours';
+import { Trip } from '../../../migrations/00007-createTableTrips';
 
 type Error = {
   error: string;
 };
 
-export type ToursResponseBodyPost = { tour: Tour } | Error;
+export type TripsResponseBodyPost = { trip: Trip } | Error;
 
-const tourSchema = z.object({
+const tripSchema = z.object({
   userId: z.number(),
   blogId: z.number(),
   name: z.string().min(1),
@@ -20,10 +20,10 @@ const tourSchema = z.object({
   imageUrl: z.string().min(1),
 });
 
-// CREATING TOURS //////////////////////////////////
+// CREATING TRIPS //////////////////////////////////
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<ToursResponseBodyPost>> {
+): Promise<NextResponse<TripsResponseBodyPost>> {
   const token = cookies().get('sessionToken');
   const user = token && (await getUserBySessionToken(token.value));
 
@@ -33,7 +33,7 @@ export async function POST(
     });
   }
   const body = await request.json();
-  const result = tourSchema.safeParse(body);
+  const result = tripSchema.safeParse(body);
 
   if (!result.success) {
     return NextResponse.json(
@@ -42,7 +42,7 @@ export async function POST(
     );
   }
 
-  const newTour = await createTour(
+  const newTrip = await createTrip(
     result.data.userId,
     result.data.blogId,
     result.data.name,
@@ -51,14 +51,14 @@ export async function POST(
     result.data.imageUrl,
   );
 
-  if (!newTour) {
+  if (!newTrip) {
     return NextResponse.json(
-      { error: 'Error creating new tour' },
+      { error: 'Error creating new trip' },
       { status: 500 },
     );
   }
 
   return NextResponse.json({
-    tour: newTour,
+    trip: newTrip,
   });
 }

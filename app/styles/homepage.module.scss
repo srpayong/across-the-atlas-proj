@@ -1,7 +1,7 @@
 .heroSection {
   height: 70vh;
   width: 100vw;
-  background-image: url(../../public/home/coverphoto1.jpeg);
+  background-image: url(../../public/home/coverphoto3.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -112,7 +112,6 @@
         display: flex;
         align-items: center;
         gap: 16px;
-
         .icon {
           width: 50px;
           height: 50px;
@@ -138,7 +137,7 @@
   }
 }
 
-// // DISCOVER SECTION //////
+// DISCOVER SECTION //////
 .discoverSection {
   display: flex;
   flex-direction: column-reverse;
@@ -178,10 +177,10 @@
       padding: 8px 20px;
       width: 100%;
       text-align: center;
-      background-color: rgb(255, 255, 255);
+      background-color: var(--main-color);
 
       &:hover {
-        border: 1px solid gray;
+        border: 1px solid var(--main-color);
       }
     }
   }

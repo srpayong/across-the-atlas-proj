@@ -53,7 +53,7 @@ export default async function UserProfilePage({ params }: ProfilePageProps) {
       <ProfilePage user={user} currentUser={currentUser} />
       <div className={styles.favouritesContainer}>
         <h1 className={domine.className}>
-          {capitalizeName(user.fullName)}'s favourite blogs
+          {capitalizeName(user.profileName)}'s favourite blogs
         </h1>
         {favourites.length === 0 ? (
           <p>Favourite is empty</p>
