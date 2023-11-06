@@ -109,7 +109,6 @@ export default function Home() {
           <Link href="/blogs">
             <p className={styles.exploreLink}>View all blogs </p>
           </Link>
-          {/* <Questions /> */}
         </div>
       </section>
     </main>

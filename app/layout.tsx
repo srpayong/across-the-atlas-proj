@@ -126,6 +126,7 @@ export default async function RootLayout({ children }: LayoutProps) {
           </div>
         </nav>
         {children}
+        Footer
       </body>
     </html>
   );
