@@ -2,7 +2,7 @@ import styles from './styles/rootPages.module.scss';
 
 export const metadata = {
   title: 'Not Found',
-  description: "sorry can't find the page you are looking for",
+  description: 'Page not found',
 };
 
 export default function RootNotFound() {

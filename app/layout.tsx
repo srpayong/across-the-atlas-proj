@@ -9,6 +9,7 @@ import { RiAccountPinCircleLine } from 'react-icons/ri';
 import { getUserBySessionToken } from '../database/users';
 import { logout } from './(auth)/logout/actions';
 import { capitalizeName } from './[username]/capitalizedName';
+import Footer from './Components/Footer';
 import { LogoutButton } from './Components/LogoutButton';
 import NavBar from './Components/NavBar';
 import styles from './styles/Navbar.module.scss';
@@ -126,7 +127,7 @@ export default async function RootLayout({ children }: LayoutProps) {
           </div>
         </nav>
         {children}
-        Footer
+        <Footer />
       </body>
     </html>
   );

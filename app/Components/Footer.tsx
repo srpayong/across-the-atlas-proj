@@ -1,5 +1,7 @@
 import { Domine } from 'next/font/google';
 import Link from 'next/link';
+import { AiFillInstagram, AiFillTwitterCircle } from 'react-icons/ai';
+import { BsFacebook, BsPinterest } from 'react-icons/bs';
 import styles from '../styles/Footer.module.scss';
 
 const domine = Domine({
@@ -16,6 +18,10 @@ export default function Footer() {
       <div>
         <Link href="/about">About</Link>
         <Link href="/">FAQ</Link>
+        <BsFacebook />
+        <AiFillTwitterCircle />
+        <AiFillInstagram />
+        <BsPinterest />
       </div>
     </footer>
   );

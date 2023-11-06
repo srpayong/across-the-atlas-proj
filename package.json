@@ -27,10 +27,14 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@ts-safeql/eslint-plugin": "^2.0.3",
     "@types/bcrypt": "^5.0.1",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "eslint-config-upleveled": "^6.1.2",
+    "libpg-query": "^15.0.2",
+    "prettier-plugin-embed": "^0.2.5",
+    "prettier-plugin-sql": "^0.15.1",
     "stylelint": "^15.11.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.2.2"
