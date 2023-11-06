@@ -66,14 +66,14 @@ export default function RegisterForm() {
         },
       ).then((r) => r.json());
 
-      console.log('submitting data:', {
-        username,
-        email,
-        password,
-        profileName,
-        bio,
-        imageUrl: profilePic.secure_url,
-      });
+      // console.log('submitting data:', {
+      //   username,
+      //   email,
+      //   password,
+      //   profileName,
+      //   bio,
+      //   imageUrl: profilePic.secure_url,
+      // });
 
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -94,7 +94,7 @@ export default function RegisterForm() {
         return;
       }
       setSuccess(true);
-      console.log(data.user);
+      // console.log(data.user);
       router.push(`/${data.user.username.toLowerCase()}`);
       router.refresh();
     }

@@ -32,7 +32,7 @@ export default function LoginForm(props: Props) {
 
     if ('error' in data) {
       setError(data.error);
-      console.log(data.error);
+      // console.log(data.error);
       return;
     }
     setSuccess(true);

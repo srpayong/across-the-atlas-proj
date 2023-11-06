@@ -81,7 +81,7 @@ export default function CreateBlog(props: Props) {
       });
 
       const data: CreateBlogResponseBodyPost = await response.json();
-      console.log({ data });
+      // console.log({ data });
 
       if ('error' in data) {
         setError(data.error);
@@ -137,7 +137,7 @@ export default function CreateBlog(props: Props) {
           name="file"
           ref={fileInputRef}
           onChange={handleOnChange}
-          className={styles.blogpPicInput}
+          className={styles.blogPicInput}
         />
       </label>
 

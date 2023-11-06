@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function RootNotFound() {
   return (
-    <div className={styles.notFounPage}>
-      <p>Your blog is not yet registered yet</p>
+    <div className={styles.notFoundPage}>
+      <p>Your blog is not yet registered </p>
       <br />
       <Link href="/blogs/create-blog">Click here to create one</Link>
     </div>

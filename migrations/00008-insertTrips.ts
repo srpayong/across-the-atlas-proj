@@ -71,7 +71,7 @@ export const trips = [
     location: 'Mexico',
     description:
       'In Oaxaca, a tortilla isnt just a tortilla. Corn is the basis of life, chiles exist in a variety of colors and shapes, and sauces like mole can have more than 30 ingredients—and take three days to prepare. With a largely indigenous population, Oaxaca has held tight to many of its longstanding traditions in the face of modernity. ',
-    image_url: '/images/trips/oaxaca.jpeg',
+    image_url: '/images/trips/mexico.jpeg',
   },
   {
     id: 7,
@@ -150,18 +150,38 @@ export const trips = [
 export async function up(sql: Sql) {
   for (const trip of trips) {
     await sql`
-    INSERT INTO trips
-      (name, user_id, blog_id, blog_name, category, location, description, image_url)
-    VALUES
-      (${trip.name}, ${trip.userId}, ${trip.blogId}, ${trip.blogName}, ${trip.category}, ${trip.location}, ${trip.description}, ${trip.image_url})
-  `;
+      INSERT INTO
+        trips (
+          name,
+          user_id,
+          blog_id,
+          blog_name,
+          category,
+          location,
+          description,
+          image_url
+        )
+      VALUES
+        (
+          ${trip.name},
+          ${trip.userId},
+          ${trip.blogId},
+          ${trip.blogName},
+          ${trip.category},
+          ${trip.location},
+          ${trip.description},
+          ${trip.image_url}
+        )
+    `;
   }
 }
 
 export async function down(sql: Sql) {
   for (const trip of trips) {
     await sql`
-      DELETE FROM trips WHERE id = ${trip.id}
-  `;
+      DELETE FROM trips
+      WHERE
+        id = ${trip.id}
+    `;
   }
 }

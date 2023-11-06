@@ -46,7 +46,7 @@ export default async function UserProfilePage({ params }: ProfilePageProps) {
 
   const favourites = await getFavouriteByUserId(user.id);
 
-  console.log({ favourites });
+  // console.log({ favourites });
 
   return (
     <section className={styles.profileContainerBox}>

@@ -9,9 +9,9 @@ import { RiAccountPinCircleLine } from 'react-icons/ri';
 import { getUserBySessionToken } from '../database/users';
 import { logout } from './(auth)/logout/actions';
 import { capitalizeName } from './[username]/capitalizedName';
-import Footer from './Components/Footer';
-import { LogoutButton } from './Components/LogoutButton';
-import NavBar from './Components/NavBar';
+import Footer from './components/Footer';
+import { LogoutButton } from './components/LogoutButton';
+import NavBar from './components/NavBar';
 import styles from './styles/Navbar.module.scss';
 
 export const questrial = Questrial({
@@ -51,9 +51,8 @@ export default async function RootLayout({ children }: LayoutProps) {
         <nav className={styles.navigationBar}>
           <NavBar />
           <div className={`${styles.logo} ${domine.className}`}>
-            <Link href="/">Hello</Link>
+            <Link href="/">Across the Atlas</Link>
           </div>
-          {/* desktop */}
           <div className={styles.desktopLoginButtons}>
             {user ? (
               <div className={styles.loggedIn}>

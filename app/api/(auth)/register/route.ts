@@ -33,10 +33,10 @@ export async function POST(
   const body = await request.json();
 
   // get credentials from the body
-  console.log(body);
+  // console.log(body);
   const result = userSchema.safeParse(body);
 
-  console.log('body: ', result);
+  // console.log('body: ', result);
   // verify the user data and check that the name is not taken
   if (!result.success) {
     return NextResponse.json(
@@ -48,7 +48,7 @@ export async function POST(
   }
 
   // verify if the user is already taken
-  console.log(await getUserByUsername(result.data.username));
+  // console.log(await getUserByUsername(result.data.username));
   if (await getUserByUsername(result.data.username)) {
     return NextResponse.json(
       {

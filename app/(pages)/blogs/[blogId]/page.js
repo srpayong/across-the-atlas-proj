@@ -19,7 +19,7 @@ import LikeTrip from './LikeTrips';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: { default: 'Hello | Bloggers' },
+  title: { default: 'Across the Atlas | Bloggers' },
   description: 'Lorem ipsum',
 };
 
@@ -123,7 +123,7 @@ export default async function SingleBlogPage(props) {
       </div>
 
       <Image
-        src="/images/blogpage-border.png"
+        src="/home/coverphoto2.jpeg"
         alt="border color"
         height={100}
         width={1000}

@@ -10,7 +10,7 @@ import { domine } from '../../../layout';
 import styles from '../../../styles/allBlogsPage.module.scss';
 
 export const metadata = {
-  title: { default: 'Hello' },
+  title: { default: 'Across the Atlas' },
   description: 'Lorem Ipsum',
 };
 
