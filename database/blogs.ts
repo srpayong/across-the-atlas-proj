@@ -1,3 +1,4 @@
+import 'server-only';
 import { cache } from 'react';
 import { Blog } from '../migrations/00002-createTableBlogs';
 import { sql } from './connect';
@@ -8,7 +9,7 @@ export const getBlogs = cache(async () => {
       *
     FROM
       blogs
- `;
+  `;
   return blogs;
 });
 
@@ -22,13 +23,25 @@ export const createBlog = cache(
     userId: number,
   ) => {
     const [blog] = await sql<Blog[]>`
-    INSERT INTO blogs
-      (name, description, website_url, location, image_url, user_id)
-    VALUES
-      (${name}, ${description}, ${websiteUrl}, ${location}, ${imageUrl}, ${userId})
-    RETURNING
-      *
- `;
+      INSERT INTO
+        blogs (
+          name,
+          description,
+          website_url,
+          location,
+          image_url,
+          user_id
+        )
+      VALUES
+        (
+          ${name},
+          ${description},
+          ${websiteUrl},
+          ${location},
+          ${imageUrl},
+          ${userId}
+        ) RETURNING *
+    `;
     return blog;
   },
 );
@@ -55,13 +68,13 @@ export const getBlogByUserId = cache(async (userId: number) => {
       blogs
     WHERE
       blogs.user_id = ${userId}
-    `;
+  `;
 
   return blogs;
 });
 
-// UPDATE BLOG //////////////////////////////////////////////////////////
-// updating blog page
+// UPDATE BLOG /////////////////////////////////////////////
+
 export const updateBlogById = cache(
   async (
     id: number,
@@ -82,8 +95,7 @@ export const updateBlogById = cache(
         image_url = ${imageUrl},
         user_id = ${userId}
       WHERE
-        id = ${id}
-        RETURNING *
+        id = ${id} RETURNING *
     `;
     return blog;
   },
@@ -91,12 +103,27 @@ export const updateBlogById = cache(
 
 // DELETE BLOG /////////////////////////////////
 export const deleteBlogById = cache(async (id: number) => {
-  const [blog] = await sql<Blog[]>`
-      DELETE FROM
-        blogs
-      WHERE
-        id = ${id}
-        RETURNING *
-    `;
-  return blog;
+  console.log('Deleting Blog. ID:', id);
+
+  const [deletedBlog] = await sql<Blog[]>`
+    DELETE FROM blogs
+    WHERE
+      id = ${id} RETURNING *
+  `;
+
+  return deletedBlog;
+});
+
+// ///////
+export const getBlogsByUserId = cache(async (userId: number) => {
+  const blogs = await sql<Blog[]>`
+    SELECT
+      *
+    FROM
+      blogs
+    WHERE
+      user_id = ${userId}
+  `;
+
+  return blogs;
 });

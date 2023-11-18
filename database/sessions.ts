@@ -4,24 +4,27 @@ import { sql } from './connect';
 
 export const deleteExpiredSessions = cache(async () => {
   await sql`
-    DELETE FROM
-       sessions
+    DELETE FROM sessions
     WHERE
-      expiry_timestamp < now()
+      expiry_timestamp < now ()
   `;
 });
 
 export const createSession = cache(async (token: string, userId: number) => {
   const [session] = await sql<Session[]>`
-    INSERT INTO sessions
-      (token, user_id)
+    INSERT INTO
+      sessions (
+        token,
+        user_id
+      )
     VALUES
-      (${token}, ${userId})
-    RETURNING
-      id,
+      (
+        ${token},
+        ${userId}
+      ) RETURNING id,
       token,
       user_id
-    `;
+  `;
 
   // delete all expired sessions
   await deleteExpiredSessions();
@@ -30,12 +33,9 @@ export const createSession = cache(async (token: string, userId: number) => {
 
 export const deleteSessionByToken = cache(async (token: string) => {
   const [session] = await sql<{ id: number; token: string }[]>`
-    DELETE FROM
-      sessions
+    DELETE FROM sessions
     WHERE
-      sessions.token = ${token}
-    RETURNING
-      id,
+      sessions.token = ${token} RETURNING id,
       token
   `;
 
@@ -53,8 +53,7 @@ export const getValidSessionByToken = cache(async (token: string) => {
       sessions
     WHERE
       sessions.token = ${token}
-    AND
-      sessions.expiry_timestamp > now()
+      AND sessions.expiry_timestamp > now ()
   `;
 
   return session;

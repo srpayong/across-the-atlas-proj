@@ -16,6 +16,7 @@ const tripSchema = z.object({
   blogId: z.number(),
   name: z.string().min(1),
   category: z.string().min(1),
+  location: z.string().min(1),
   description: z.string().min(1),
   imageUrl: z.string().min(1),
 });
@@ -47,6 +48,7 @@ export async function POST(
     result.data.blogId,
     result.data.name,
     result.data.category,
+    result.data.location,
     result.data.description,
     result.data.imageUrl,
   );

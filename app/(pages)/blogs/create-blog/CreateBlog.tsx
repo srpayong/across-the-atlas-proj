@@ -131,7 +131,7 @@ export default function CreateBlog(props: Props) {
         />
       </label>
 
-      <label className={styles.blogPicDiv}>
+      <label>
         <input
           type="file"
           name="file"

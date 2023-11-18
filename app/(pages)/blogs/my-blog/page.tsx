@@ -1,3 +1,4 @@
+// MyBlogPage.tsx
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { getBlogByUserId } from '../../../../database/blogs';
 import { getUserBySessionToken } from '../../../../database/users';
 import { domine } from '../../../layout';
 import styles from '../../../styles/allBlogsPage.module.scss';
+import DeleteUserBlog from './DeleteUserBlog'; //
 
 export const metadata = {
   title: { default: 'Across the Atlas' },
@@ -22,7 +24,7 @@ export default async function MyBlogPage() {
     : await getUserBySessionToken(sessionToken.value);
 
   if (!user) {
-    return redirect(`/login?returnTo=/blogs/my-blog`);
+    return redirect(`/login?returnTo=blogs/myblog`);
   }
 
   const myBlog = await getBlogByUserId(user.id);
@@ -31,7 +33,7 @@ export default async function MyBlogPage() {
     <div className={styles.myBlogContainer}>
       {myBlog.length === 0 ? (
         <div className={styles.noBlogFoundMessage}>
-          <p>You don't have a blog yet</p>
+          <p>Blog section is empty</p>
           <Link href="/blogs/create-blog" className={styles.createBlogLink}>
             <p>Click here to create one</p>
           </Link>
@@ -42,17 +44,27 @@ export default async function MyBlogPage() {
             return (
               <div key={`blog-div-${blog.id}`} className={styles.blogCard}>
                 <p className={`${styles.blogName} ${domine.className}`}>
+                  {' '}
                   {blog.name}
                 </p>
+                <DeleteUserBlog
+                  blogId={blog.id}
+                  currentUser={user}
+                  user={user}
+                />
+
                 <Image
                   src={blog.imageUrl}
-                  alt="blog"
+                  alt="Blog"
                   width={100}
                   height={100}
                   className={styles.blogImage}
                 />
-                <Link href={`/blogs/${blog.id}`} className={styles.blogLink}>
-                  Go to blog <BsArrowRight />
+                <Link
+                  href={`/blogs/${blog.id}`}
+                  className={`${styles.blogLink} ${domine.className}`}
+                >
+                  View blog <BsArrowRight />
                 </Link>
               </div>
             );

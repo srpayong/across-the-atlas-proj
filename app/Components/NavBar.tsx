@@ -45,7 +45,7 @@ export default function NavBar() {
             <Link href="/about">About Us</Link>
           </li>
           <li className={styles.navList}>
-            <Link href="/blogs">Blogs</Link>
+            <Link href="/contact">Contact Us</Link>
           </li>
         </ul>
       </div>

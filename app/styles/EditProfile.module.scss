@@ -3,17 +3,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: 100px 20px 20px;
-  gap: 40px;
+  width: 400px;
+  padding: 50px;
+  // gap: 40px;
+  margin: auto;
+  border: 2px solid primary;
 
   .profilePageContainer {
     display: flex;
     flex-direction: column;
+    line-height: 1rem;
     width: 100%;
+    height: 100%;
+    margin: auto;
 
     .imageContainer {
       width: 100%;
+      height: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,6 +27,7 @@
       .profileAvatar {
         height: 100%;
         width: 100%;
+        display: flex;
         object-fit: cover;
       }
     }
@@ -36,12 +43,15 @@
 
     .nameContainer {
       padding-top: 20px;
+      margin: auto;
+      font-size: 2rem;
     }
 
     .bioContainer {
       display: flex;
       margin-top: 16px;
       line-height: 1.5;
+      font-size: 1 rem;
     }
   }
 
@@ -53,6 +63,7 @@
     flex-direction: column;
     gap: 16px;
     align-items: center;
+    font-size: 1rem;
 
     .allCards {
       display: flex;

@@ -4,7 +4,7 @@ import FilteredTripsPage from './FilterTrips';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: { default: 'Hello' },
+  title: { default: 'Across the Atlas | Trips' },
   description: 'Lorem Ipsum',
 };
 

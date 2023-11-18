@@ -8,7 +8,7 @@ import styles from '../../../styles/CreateBlogForm.module.scss';
 import CreateBlog from './CreateBlog';
 
 export const metadata = {
-  title: { default: 'Hello |' },
+  title: { default: 'Across the Atlas' },
   description: 'Lorem Ipsum',
 };
 

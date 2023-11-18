@@ -1,7 +1,11 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createBlog } from '../../../database/blogs';
+import {
+  createBlog,
+  deleteBlogById,
+  updateBlogById,
+} from '../../../database/blogs';
 import { getUserBySessionToken } from '../../../database/users';
 import { Blog } from '../../../migrations/00002-createTableBlogs';
 
@@ -9,6 +13,8 @@ export type Error = {
   error: string;
 };
 
+export type BlogResponseBodyDelete = { blog: Blog } | Error;
+export type BlogResponseBodyPut = { blog: Blog } | Error;
 export type CreateBlogResponseBodyPost = { blog: Blog } | Error;
 
 const blogSchema = z.object({
@@ -67,5 +73,91 @@ export async function POST(
 
   return NextResponse.json({
     blog: newBlog,
+  });
+}
+
+// delete
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Record<string, string | string[]> },
+): Promise<NextResponse<BlogResponseBodyDelete>> {
+  const blogId = Number(params.blogId);
+
+  if (!blogId) {
+    return NextResponse.json(
+      {
+        error: 'Invalid Blog Id',
+      },
+      { status: 400 },
+    );
+  }
+  // query the database to get all the blog
+  const blog = await deleteBlogById(blogId);
+
+  if (!blog) {
+    return NextResponse.json(
+      {
+        error: 'Blog Not Found',
+      },
+      { status: 404 },
+    );
+  }
+
+  return NextResponse.json({ blog: blog });
+}
+
+// ////////////////////////////////////////////
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Record<string, string | string[]> },
+): Promise<NextResponse<BlogResponseBodyPut>> {
+  const blogId = Number(params.blogId);
+  const body = await request.json();
+
+  if (!blogId) {
+    return NextResponse.json(
+      {
+        error: 'Invalid Blog Id',
+      },
+      { status: 400 },
+    );
+  }
+
+  // zod please verify the body matches my schema
+  const result = blogSchema.safeParse(body);
+
+  if (!result.success) {
+    // zod sends details about the error
+    return NextResponse.json(
+      {
+        error: 'The data is incomplete',
+      },
+      { status: 400 },
+    );
+  }
+  // query the database to update the blog
+  const blog = await updateBlogById(
+    blogId,
+    result.data.name,
+    result.data.description,
+    result.data.websiteUrl,
+    result.data.location,
+    result.data.imageUrl,
+    result.data.userId,
+  );
+
+  if (!blog) {
+    return NextResponse.json(
+      {
+        error: 'Blog Not Found',
+      },
+      { status: 404 },
+    );
+  }
+
+  return NextResponse.json({
+    blog: blog,
   });
 }

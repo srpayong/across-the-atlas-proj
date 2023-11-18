@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 const domine = Domine({ subsets: ['latin'] });
 
 export const metadata = {
-  title: { default: 'Hello' },
+  title: { default: 'Across the Atlas | Blogs' },
   description: 'Lorem Ipsum',
 };
 
@@ -33,13 +33,14 @@ export default async function BlogsPage() {
                 <div className={styles.imageContainer}>
                   <Image
                     src={blog.imageUrl}
-                    width={300}
-                    height={300}
+                    width={100}
+                    height={100}
                     alt="Blog avatar"
                     className={styles.blogImage}
                   />
                 </div>
-                <div className={styles.descriptionContianer}>
+
+                <div className={styles.descriptionContainer}>
                   <p className={styles.blogDescription}>{blog.description}</p>
                 </div>
               </Link>

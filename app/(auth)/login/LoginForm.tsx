@@ -101,7 +101,7 @@ export default function LoginForm(props: Props) {
           {success && (
             <figure className={styles.notification}>
               <div className={styles.notificationBody}>
-                You are now logged in
+                You are now logged in. Redirecting to login page.
               </div>
               <div className={styles.notificationProgress} />
             </figure>

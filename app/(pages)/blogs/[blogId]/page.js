@@ -13,13 +13,13 @@ import { domine } from '../../../layout';
 import styles from '../../../styles/blogPage.module.scss';
 import AddFavourites from './AddFavourites';
 import AddReviews from './AddReviews';
-import AddTripsForm from './AddTrips';
+import AddTrips from './AddTrips';
 import LikeTrip from './LikeTrips';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: { default: 'Across the Atlas | Bloggers' },
+  title: { default: 'Across the Atlas' },
   description: 'Lorem ipsum',
 };
 
@@ -80,7 +80,8 @@ export default async function SingleBlogPage(props) {
             <p className={styles.blogBio}>{singleBlog.description}</p>
             <div className={styles.locationAndBlogger}>
               <p>
-                <VscLocation /> {singleBlog.location}
+                <VscLocation />
+                {singleBlog.location}
               </p>
             </div>
           </div>
@@ -88,7 +89,7 @@ export default async function SingleBlogPage(props) {
 
         {/* ************* TRIPS SECTION ************* */}
         <div className={styles.tripsFeed}>
-          <h2 className={domine.className}>Trips Feed</h2>
+          <h2 className={styles.tripsFeedTitle}>Trips feed: </h2>
           <div className={styles.tripsContainer}>
             {blogTrips.map((trip) => {
               return (
@@ -122,52 +123,58 @@ export default async function SingleBlogPage(props) {
         </div>
       </div>
 
-      <Image
-        src="/home/coverphoto2.jpeg"
-        alt="border color"
-        height={100}
-        width={1000}
-        className={styles.borderImage}
-      />
-
       {/* ************* REVIEWS SECTION ************* */}
-      <div className={styles.reviewsSection}>
-        <h2 className={domine.className}>What other users have been saying</h2>
-        <div className={styles.reviewsContainer}>
-          {userReviews.map((review) => {
-            return (
-              <div
-                key={`review-div-${review.reviewId}`}
-                className={styles.singleReviewCard}
-              >
-                <div className={styles.userImage}>
-                  <img
-                    src={review.userImageUrl}
-                    height={60}
-                    width={60}
-                    style={{ borderRadius: '50%' }}
-                    alt="user avatar"
-                  />
+      <div className="mx-auto w-11/12 max-w-screen-lg">
+        {/* Left side with reviews, h1, and input box */}
+        <div className="w-full p-4 border border-gray-300 rounded-md">
+          <h1 className={`{domine.className} text-3xl`}>
+            What other users have been saying:
+          </h1>
+          <div className="h-80 overflow-y-auto border p-8">
+            {/* Scrollable box for comments */}
+            <div className="space-y-4">
+              {userReviews.map((review, index) => (
+                <div
+                  key={`review-div-${review.reviewId}`}
+                  className={`flex items-center border-5 rounded-m space-x-4 ${
+                    index % 2 === 0 ? 'bg-white' : 'bg-gray-100'
+                  }`}
+                >
+                  <div className="w-24 h-24 overflow-hidden rounded-full bg-accent">
+                    <img
+                      src={review.userImageUrl}
+                      className="object-cover w-full h-full"
+                      alt="user avatar"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <Link href={`/${review.userName}`}>
+                      <h4 className="font-semibold">{review.userName}</h4>
+                    </Link>
+                    <p className="text-black-600">{review.reviewContent}</p>
+                  </div>
                 </div>
-                <div className={styles.reviews}>
-                  <Link href={`/${review.userName}`}>
-                    <h4 className={domine.className}> {review.userName} </h4>
-                  </Link>
-                  <p className={styles.reviewContent}>{review.reviewContent}</p>
-                </div>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
+          {/* Input box */}
+          <div className="mt-4 flex items-center justify-center">
+            <AddReviews
+              blog={singleBlog}
+              user={user}
+              userReviews={userReviews}
+              className="bg-secondary"
+            />
+          </div>
         </div>
 
-        <div className={styles.reviewInput}>
-          <AddReviews blog={singleBlog} user={user} userReviews={userReviews} />
-        </div>
+        {/* Empty space */}
+        {/* <div className="flex-1"></div> */}
       </div>
 
       {/* ************* TRIPS FORM SECTION (for blog owner only)************* */}
-      <div>
-        <AddTripsForm singleBlog={singleBlog} user={user} blog={singleBlog} />
+      <div className="flex-grow p-4 mt-10 flex items-center justify-center">
+        <AddTrips singleBlog={singleBlog} user={user} blog={singleBlog} />
       </div>
     </main>
   );

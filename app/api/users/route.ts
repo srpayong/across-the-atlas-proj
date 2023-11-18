@@ -1,6 +1,8 @@
+import { v2 as cloudinary } from 'cloudinary';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { deleteUserById, updateUserById } from '../../../database/users';
+import { getUserBySessionToken, updateUserById } from '../../../database/users';
 import { User } from '../../../migrations/00000-createTableUsers';
 
 export type Error = {
@@ -10,6 +12,13 @@ export type Error = {
 type UserResponseBodyDelete = { user: User } | Error;
 type UserResponseBodyPut = { user: User } | Error;
 
+// Configure Cloudinary with your credentials
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 const userSchema = z.object({
   username: z.string(),
   email: z.string(),
@@ -18,37 +27,14 @@ const userSchema = z.object({
   imageUrl: z.string(),
 });
 
-// ////////////////////////////////////////////
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
 ): Promise<NextResponse<UserResponseBodyDelete>> {
-  const userId = Number(params.userId);
-
-  if (!userId) {
-    return NextResponse.json(
-      {
-        error: 'Invalid User Id',
-      },
-      { status: 400 },
-    );
-  }
-  // query the database to get all the user
-  const user = await deleteUserById(userId);
-
-  if (!user) {
-    return NextResponse.json(
-      {
-        error: 'User Not Found',
-      },
-      { status: 404 },
-    );
-  }
-
-  return NextResponse.json({ user: user });
+  const token = cookies().get('sessionToken');
+  const user = token && (await getUserBySessionToken(token.value));
 }
 
-// ////////////////////////////////////////////
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },
@@ -56,47 +42,74 @@ export async function PUT(
   const userId = Number(params.userId);
   const body = await request.json();
 
-  if (!userId) {
-    return NextResponse.json(
-      {
-        error: 'Invalid User Id',
-      },
-      { status: 400 },
-    );
+  if (isNaN(userId) || userId <= 0) {
+    return NextResponse.json({ error: 'Invalid User Id' }, { status: 400 });
   }
 
-  // zod please verify the body matches my schema
   const result = userSchema.safeParse(body);
 
   if (!result.success) {
-    // zod sends details about the error
     return NextResponse.json(
-      {
-        error: 'The data is incomplete',
-      },
+      { error: 'The data is incomplete' },
       { status: 400 },
     );
   }
-  // query the database to update the user
-  const user = await updateUserById(
-    userId,
-    result.data.username,
-    result.data.email,
-    result.data.profileName,
-    result.data.bio,
-    result.data.imageUrl,
-  );
 
-  if (!user) {
+  try {
+    // Check if there is an image in the body
+    if (result.data.imageUrl) {
+      // Upload image to Cloudinary
+      const cloudinaryResponse = await cloudinary.uploader.upload(
+        result.data.imageUrl,
+        {
+          folder: 'uploads', // specify your Cloudinary folder
+          overwrite: true,
+        },
+      );
+
+      // Update the user record with the Cloudinary image URL
+      const updatedUser = await updateUserById({
+        id: userId,
+        username: result.data.username,
+        email: result.data.email,
+        profileName: result.data.profileName,
+        bio: result.data.bio,
+        imageUrl: cloudinaryResponse.secure_url,
+      });
+
+      if (!updatedUser) {
+        return NextResponse.json(
+          { error: 'Error updating user' },
+          { status: 500 },
+        );
+      }
+
+      return NextResponse.json({ user: updatedUser });
+    }
+
+    // Continue with the rest of your PUT logic (without image upload)
+    const updatedUser = await updateUserById({
+      id: userId,
+      username: result.data.username,
+      email: result.data.email,
+      profileName: result.data.profileName,
+      bio: result.data.bio,
+      imageUrl: result.data.imageUrl,
+    });
+
+    if (!updatedUser) {
+      return NextResponse.json(
+        { error: 'Error updating user' },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json({ user: updatedUser });
+  } catch (error) {
+    console.error('Error processing update:', error);
     return NextResponse.json(
-      {
-        error: 'User Not Found',
-      },
-      { status: 404 },
+      { error: 'Internal Server Error' },
+      { status: 500 },
     );
   }
-
-  return NextResponse.json({
-    user: user,
-  });
 }

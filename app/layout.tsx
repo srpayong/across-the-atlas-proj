@@ -1,4 +1,4 @@
-import './globals.scss';
+import './globals.css';
 import { Domine, Questrial } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
@@ -26,7 +26,7 @@ export const domine = Domine({
 });
 
 export const metadata = {
-  title: 'Hello',
+  title: 'Across the Atlas',
   description: 'Lorem Ipsum',
 };
 
@@ -45,9 +45,9 @@ export default async function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <head>
-        <meta name="theme-color" content="#ffffff" />
+        <meta />
       </head>
-      <body className={questrial.className}>
+      <body className="bg-custom2 text-primary">
         <nav className={styles.navigationBar}>
           <NavBar />
           <div className={`${styles.logo} ${domine.className}`}>
@@ -67,7 +67,7 @@ export default async function RootLayout({ children }: LayoutProps) {
                   href="/blogs/my-blog"
                   className={styles.desktopLoggedInLink}
                 >
-                  My blog
+                  My Blogs
                 </Link>
                 <LogoutButton logout={logout} />
               </div>

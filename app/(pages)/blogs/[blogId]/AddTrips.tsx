@@ -14,6 +14,7 @@ type Props = {
 export default function AddTripsForm(props: Props) {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
+  const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
@@ -72,6 +73,7 @@ export default function AddTripsForm(props: Props) {
           blogId: props.blog.id,
           name,
           category,
+          location,
           description,
           imageUrl: tripPic.secure_url,
         }),
@@ -90,88 +92,101 @@ export default function AddTripsForm(props: Props) {
   };
 
   return (
-    <div className={styles.formContainer}>
-      {props.user.id === props.blog.userId && (
-        <div className={styles.innerContainer}>
-          <h4>Upload a trip</h4>
-          <form onSubmit={handleOnSubmit} className={styles.uploadTripForm}>
-            <div className={styles.leftSide}>
-              <div>
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  value={name}
-                  onChange={(event) => setName(event.currentTarget.value)}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="category">Category</label>
-                <select
-                  id="category"
-                  value={category}
-                  onChange={(event) => setCategory(event.currentTarget.value)}
-                >
-                  <option>Select a category</option>
-                  <option>Wildlife & Safari</option>
-                  <option>Food and Drink</option>
-                  <option>Adventure</option>
-                  <option>Beach</option>
-                  <option>History & Culture</option>
-                  <option>Hiking & Trekking</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="description">Description</label>
-                <textarea
-                  id="decription"
-                  maxLength={500}
-                  value={description}
-                  onChange={(event) =>
-                    setDescription(event.currentTarget.value)
-                  }
-                />
-              </div>
-
-              <div className={styles.tripPic}>
-                <label htmlFor="trip">Trip picture</label>
-                <input
-                  id="trip"
-                  type="file"
-                  name="file"
-                  ref={fileInputRef}
-                  onChange={handleOnChange}
-                  className={styles.tripPicInput}
-                />
-              </div>
-            </div>
-
-            <div className={styles.rightSide}>
-              <div className={styles.imageContainer}>
-                {!!imageUrl && (
-                  <Image
-                    src={imageUrl}
-                    height={100}
-                    width={100}
-                    alt="Trip avatar"
-                    className={styles.tripImage}
+    <div className="w-1/3 border-black border-5px p-4">
+      <div className={styles.formContainer}>
+        {props.user.id === props.blog.userId && (
+          <div className={styles.innerContainer}>
+            <h4>Write a Blog Entry</h4>
+            <form onSubmit={handleOnSubmit} className={styles.uploadTripForm}>
+              <div className={styles.leftSide}>
+                <div>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    id="name"
+                    value={name}
+                    onChange={(event) => setName(event.currentTarget.value)}
                   />
-                )}
+                </div>
+
+                <div>
+                  <label htmlFor="category">Category</label>
+                  <select
+                    id="category"
+                    value={category}
+                    onChange={(event) => setCategory(event.currentTarget.value)}
+                  >
+                    <option>Select a category</option>
+                    <option>Wildlife & Safari</option>
+                    <option>Food and Drink</option>
+                    <option>Adventure</option>
+                    <option>Beach</option>
+                    <option>History & Culture</option>
+                    <option>Hiking & Trekking</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="location">Location</label>
+                  <input
+                    id="location"
+                    value={location}
+                    onChange={(event) => setLocation(event.currentTarget.value)}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="description">Description</label>
+                  <textarea
+                    id="decription"
+                    maxLength={500}
+                    value={description}
+                    onChange={(event) =>
+                      setDescription(event.currentTarget.value)
+                    }
+                  />
+                </div>
+
+                <div className={styles.tripPic}>
+                  <label htmlFor="trip">Blog photo</label>
+                  <div className="flex items-center space-x-4">
+                    <input
+                      id="trip"
+                      type="file"
+                      name="file"
+                      ref={fileInputRef}
+                      onChange={handleOnChange}
+                      className={styles.tripPicInput}
+                    />
+                    {!!imageUrl && (
+                      <Image
+                        src={imageUrl}
+                        height={150}
+                        width={150}
+                        alt="Trip avatar"
+                        className={styles.tripImage}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
 
-              <button>Create trip</button>
-              <div style={{ color: 'red' }}>{error}</div>
-              {success && (
-                <figure className={styles.notification}>
-                  <div className={styles.notificationBody}>Trip created!</div>
-                  <div className={styles.notificationProgress} />
-                </figure>
-              )}
-            </div>
-          </form>
-        </div>
-      )}
+              <div className={styles.rightSide}>
+                <button>Start a travel blog</button>
+                <div className="flex items-center space-x-2">
+                  {!!imageUrl && <div style={{ color: 'red' }}>{error}</div>}
+                  {success && (
+                    <figure className={styles.notification}>
+                      <div className={styles.notificationBody}>
+                        Blog created!
+                      </div>
+                      <div className={styles.notificationProgress} />
+                    </figure>
+                  )}
+                </div>
+              </div>
+            </form>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

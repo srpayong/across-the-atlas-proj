@@ -71,7 +71,7 @@ export const trips = [
     location: 'Mexico',
     description:
       'In Oaxaca, a tortilla isnt just a tortilla. Corn is the basis of life, chiles exist in a variety of colors and shapes, and sauces like mole can have more than 30 ingredients—and take three days to prepare. With a largely indigenous population, Oaxaca has held tight to many of its longstanding traditions in the face of modernity. ',
-    image_url: '/images/trips/mexico.jpeg',
+    image_url: '/images/trips/oaxaca.jpeg',
   },
   {
     id: 7,

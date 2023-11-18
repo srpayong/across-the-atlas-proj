@@ -1,9 +1,12 @@
 'use client';
 
-import { Domine } from 'next/font/google';
 import Image from 'next/image';
-import styles from '../styles/EditProfile.module.scss';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import UpdateProfileForm from '../(pages)/updateProfile/UpdateProfileForm';
 import { capitalizeName } from './capitalizedName';
+
+// ... (imports remain unchanged)
 
 type Props = {
   currentUser: {
@@ -22,51 +25,69 @@ type Props = {
     bio: string;
     imageUrl: string;
   };
+  handleSaveSuccess: () => void;
 };
 
-const domine = Domine({
-  subsets: ['latin'],
-  display: 'swap',
-});
-
 export default function ProfilePage(props: Props) {
+  const router = useRouter();
+  const [isEditing, setIsEditing] = React.useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveSuccess = () => {
+    setIsEditing(false);
+
+    router.replace(router.asPath, undefined, { scroll: false }).then(() => {
+      window.location.reload();
+    });
+  };
+
+  const handleCloseClick = () => {
+    setIsEditing(false);
+  };
+
   return (
-    <div className={styles.profilePageContainer}>
-      <div className={styles.imageContainer}>
-        {props.user.imageUrl ? (
-          <Image
-            src="/images/avatar.jpeg"
-            width={100}
-            height={100}
-            alt="Profile avatar"
-            className={styles.profileAvatar}
-          />
-        ) : (
-          <Image
-            src={props.user.imageUrl}
-            width={100}
-            height={100}
-            alt="Profile avatar"
-            className={styles.profileAvatar}
-          />
-        )}
-      </div>
+    <div className="flex flex-col items-center justify-center h-[400px] border-primary">
+      <div className="avatar p-10 gap-20 bg-white rounded-lg shadow-md text-center">
+        <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden mx-auto">
+          {props.user.imageUrl ? (
+            <Image
+              src={props.user.imageUrl}
+              width={300}
+              height={300}
+              alt="Profile avatar"
+            />
+          ) : (
+            <div>Default Image</div>
+          )}
+        </div>
 
-      {/* Edit profile info*/}
-      {props.currentUser.username === props.user.username && (
-        <button className={styles.editButton}>Edit profile</button>
-      )}
+        <div>
+          <h1 className="text-4xl font-bold">
+            {capitalizeName(props.user.profileName)}
+          </h1>
+          <p className="mt-2">@{props.user.username}</p>
+          <p className="mt-2">{props.user.bio}</p>
 
-      <div className={styles.nameContainer}>
-        <h1 className={domine.className}>
-          {capitalizeName(props.user.profileName)}
-        </h1>
-      </div>
-      <div>
-        <p>@{props.user.username}</p>
-      </div>
-      <div className={styles.bioContainer}>
-        <p>{props.user.bio}</p>
+          {isEditing ? (
+            <UpdateProfileForm
+              user={props.user}
+              onSaveSuccess={handleSaveSuccess}
+              onClose={handleCloseClick}
+            />
+          ) : (
+            props.currentUser.username === props.user.username && (
+              <button
+                className="mt-3 w-[150px] h-[40px] bg-primary text-white rounded-md"
+                onClick={handleEditClick}
+              >
+                Edit profile
+              </button>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

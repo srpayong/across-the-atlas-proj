@@ -9,15 +9,15 @@ export type UserWithPasswordHash = User & {
 
 export const getUsers = cache(async () => {
   const users = await sql<User[]>`
-  SELECT
-    id,
-    username,
-    email,
-    profile_name,
-    bio,
-    image_url
-  FROM
-    users
+    SELECT
+      id,
+      username,
+      email,
+      profile_name,
+      bio,
+      image_url
+    FROM
+      users
   `;
   return users;
 });
@@ -33,18 +33,30 @@ export const createUser = cache(
     imageUrl: string,
   ) => {
     const [user] = await sql<User[]>`
-    INSERT INTO users
-      (username, email, password_hash, profile_name, bio, image_url)
-    VALUES
-      (${username.toLowerCase()}, ${email}, ${passwordHash}, ${profileName}, ${bio}, ${imageUrl})
-    RETURNING
-      id,
-      username,
-      email,
-      profile_name,
-      bio,
-      image_url
- `;
+      INSERT INTO
+        users (
+          username,
+          email,
+          password_hash,
+          profile_name,
+          bio,
+          image_url
+        )
+      VALUES
+        (
+          ${username.toLowerCase()},
+          ${email},
+          ${passwordHash},
+          ${profileName},
+          ${bio},
+          ${imageUrl}
+        ) RETURNING id,
+        username,
+        email,
+        profile_name,
+        bio,
+        image_url
+    `;
     return user;
   },
 );
@@ -54,11 +66,19 @@ export const createUser = cache(
 export const getUserWithPasswordHashByUsername = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
-    SELECT * FROM
-      users
-    WHERE
-      users.username = ${username.toLowerCase()}
- `;
+      SELECT
+        id,
+        username,
+        email,
+        profile_name,
+        bio,
+        image_url,
+        password_hash AS "passwordHash" -- Ensure to include the password_hash
+      FROM
+        users
+      WHERE
+        users.username = ${username.toLowerCase()}
+    `;
 
     return user;
   },
@@ -73,7 +93,7 @@ export const getUserByUsername = cache(async (username: string) => {
       users
     WHERE
       users.username = ${username}
- `;
+  `;
 
   return user;
 });
@@ -99,15 +119,14 @@ export const getUsersWithLimitAndOffsetBySessionToken = cache(
         users.*
       FROM
         users
-      INNER JOIN
-        sessions ON (
-          sessions.token = ${token} AND
-          sessions.expiry_timestamp > now()
-
-
+        INNER JOIN sessions ON (
+          sessions.token = ${token}
+          AND sessions.expiry_timestamp > now ()
         )
-      LIMIT ${limit}
-      OFFSET ${offset}
+      LIMIT
+        ${limit}
+      OFFSET
+        ${offset}
     `;
 
     return users;
@@ -115,37 +134,44 @@ export const getUsersWithLimitAndOffsetBySessionToken = cache(
 );
 
 export const getUserBySessionToken = cache(async (token: string) => {
-  const [user] = await sql<User[]>`
-  SELECT
-    users.id,
-    users.username,
-    users.email,
-    users.profile_name,
-    users.bio,
-    users.image_url
-  FROM
-    users
-  INNER JOIN
-    sessions ON (
-      sessions.token = ${token} AND
-      sessions.user_id = users.id AND
-      sessions.expiry_timestamp > now()
-    )
+  const [user] = await sql<UserWithPasswordHash[]>`
+    SELECT
+      users.id,
+      users.username,
+      users.email,
+      users.password_hash,
+      users.profile_name,
+      users.bio,
+      users.image_url
+    FROM
+      users
+      INNER JOIN sessions ON (
+        sessions.token = ${token}
+        AND sessions.user_id = users.id
+        AND sessions.expiry_timestamp > now ()
+      )
   `;
   return user;
 });
 
-// UPDATE PROFILE //////////////////////////////////////////////////////////
-// updating user profile page
+// UPDATE PROFILE //////////////////////////////////////////////////////
+
 export const updateUserById = cache(
-  async (
-    id: number,
-    username: string,
-    email: string,
-    profileName: string,
-    bio: string,
-    imageUrl: string,
-  ) => {
+  async ({
+    id,
+    username,
+    email,
+    profileName,
+    bio,
+    imageUrl,
+  }: {
+    id: number;
+    username: string;
+    email: string;
+    profileName: string;
+    bio: string;
+    imageUrl: string;
+  }) => {
     const [user] = await sql<UserWithPasswordHash[]>`
       UPDATE users
       SET
@@ -155,8 +181,13 @@ export const updateUserById = cache(
         bio = ${bio},
         image_url = ${imageUrl}
       WHERE
-        id = ${id}
-        RETURNING *
+        id = ${id} RETURNING id,
+        username,
+        email,
+        profile_name AS "profileName", -- Use "profileName" to match the expected type
+        bio,
+        image_url AS "imageUrl", -- Use "imageUrl" to match the expected type
+        password_hash AS "passwordHash"
     `;
     return user;
   },
@@ -165,11 +196,9 @@ export const updateUserById = cache(
 // DELETE USER /////////////////////////////////
 export const deleteUserById = cache(async (id: number) => {
   const [user] = await sql<UserWithPasswordHash[]>`
-      DELETE FROM
-        users
-      WHERE
-        id = ${id}
-        RETURNING *
-    `;
+    DELETE FROM users
+    WHERE
+      id = ${id} RETURNING *
+  `;
   return user;
 });

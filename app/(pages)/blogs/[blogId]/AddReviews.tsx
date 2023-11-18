@@ -37,14 +37,19 @@ export default function AddReviewsToBlog(props: Props) {
           router.refresh();
         }}
       >
-        <label>
-          <input
-            maxLength={1000}
-            value={review}
-            onChange={(event) => setReview(event.currentTarget.value)}
-            placeholder="Write something..."
-          />
-        </label>
+        <input
+          maxLength={1000}
+          value={review}
+          onChange={(event) => setReview(event.currentTarget.value)}
+          placeholder="Write something..."
+          style={{
+            color: 'darkbrown',
+            fontSize: '16px',
+            backgroundColor: '#E2DDD9',
+            width: '600px',
+            height: '80px',
+          }}
+        />
 
         <button
           onClick={() => {

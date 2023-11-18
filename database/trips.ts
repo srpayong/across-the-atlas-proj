@@ -9,14 +9,18 @@ type BlogTrip = {
   userId: number;
   tripName: string;
   tripCategory: string;
+  tripLocation: string;
   tripDescription: string;
   tripImageUrl: string;
 };
 
 export const getTrips = cache(async () => {
   const trips = await sql<Trip[]>`
-    SELECT * FROM trips
- `;
+    SELECT
+      *
+    FROM
+      trips
+  `;
 
   return trips;
 });
@@ -28,8 +32,10 @@ export const getTripsWithLimitAndOffset = cache(
         *
       FROM
         trips
-      LIMIT ${limit}
-      OFFSET ${offset}
+      LIMIT
+        ${limit}
+      OFFSET
+        ${offset}
     `;
 
     return trips;
@@ -43,13 +49,14 @@ export const getTripsWithLimitAndOffsetBySessionToken = cache(
         trips.*
       FROM
         trips
-      INNER JOIN
-        sessions ON (
-          sessions.token = ${token} AND
-          sessions.expiry_timestamp > now()
+        INNER JOIN sessions ON (
+          sessions.token = ${token}
+          AND sessions.expiry_timestamp > now ()
         )
-      LIMIT ${limit}
-      OFFSET ${offset}
+      LIMIT
+        ${limit}
+      OFFSET
+        ${offset}
     `;
 
     return trips;
@@ -89,15 +96,31 @@ export const createTrip = cache(
     blogId: number,
     name: string,
     category: string,
+    location: string,
     description: string,
     image_url: string,
   ) => {
     const [tripToCreate] = await sql<Trip[]>`
-      INSERT INTO trips
-        (user_id, blog_id, name, category, description, image_url)
+      INSERT INTO
+        trips (
+          user_id,
+          blog_id,
+          name,
+          category,
+          location,
+          description,
+          image_url
+        )
       VALUES
-        (${userId}, ${blogId}, ${name}, ${category}, ${description}, ${image_url})
-      RETURNING *
+        (
+          ${userId},
+          ${blogId},
+          ${name},
+          ${category},
+          ${location},
+          ${description},
+          ${image_url}
+        ) RETURNING *
     `;
 
     return tripToCreate;
@@ -107,23 +130,22 @@ export const createTrip = cache(
 // Get all info form trips
 export const getTripsWithInfo = cache(async (blogId: number) => {
   const tripsInBlog = await sql<BlogTrip[]>`
-  SELECT distinct
-    trips.id AS trip_id,
-    users.id AS user_id,
-   blogs.id AS blog_id,
-   blogs.name AS blog_blogName,
-    trips.name AS trip_name,
-    trips.category AS trip_category,
-    trips.description AS trip_description,
-    trips.image_url AS trip_image_url
-  FROM
-    trips
-  INNER JOIN
-    blogs ON trips.blog_id = blogs.id
-  INNER JOIN
-    users ON trips.user_id = users.id
-  WHERE
-    trips.blog_id = ${blogId}
+    SELECT DISTINCT
+      trips.id AS trip_id,
+      users.id AS user_id,
+      blogs.id AS blog_id,
+      blogs.name AS blog_blogName,
+      trips.name AS trip_name,
+      trips.category AS trip_category,
+      trips.location AS trip_location,
+      trips.description AS trip_description,
+      trips.image_url AS trip_image_url
+    FROM
+      trips
+      INNER JOIN blogs ON trips.blog_id = blogs.id
+      INNER JOIN users ON trips.user_id = users.id
+    WHERE
+      trips.blog_id = ${blogId}
   `;
 
   return tripsInBlog;
