@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 100px 20px 50px;
   background-color: #f8f1e9;
-  // color: #8d7966;
+  color: #8d7966;
   margin: auto;
 
   .greeting {
@@ -18,16 +18,16 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
+      font-size: 1.2rem;
       text-transform: lowercase;
     }
 
     .loginMessage {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
 
     .registerMessage {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
     }
   }
 
@@ -46,6 +46,8 @@
       box-shadow: rgba(141, 121, 102) 6px 3px 6px 3px;
       width: 40%;
       margin: auto;
+      color: #8d7966;
+      font-size: 1.2 rem;
 
       .profilePicDiv {
         display: flex;
@@ -92,7 +94,7 @@
         gap: 8px;
 
         label {
-          font-size: 0.8rem;
+          font-size: 1rem;
 
           span {
             color: rgb(207, 55, 55);
@@ -104,8 +106,9 @@
           height: 40px;
           border-radius: 8px;
           padding-left: 8px;
-          background-color: #a8a39d;
+          background-color: #e2ddd9;
           color: #2c3e50;
+          // color: black;
         }
 
         textarea {
@@ -113,7 +116,7 @@
           height: 80px;
           border-radius: 8px;
           padding: 6px 0px 0px 8px;
-          background-color: #a8a39d;
+          background-color: #e2ddd9;
           color: #2c3e50;
         }
 
@@ -143,8 +146,9 @@
         letter-spacing: 1.5px;
 
         &:hover {
-          border: 1px solid var(--secondary-text-color);
+          border: 2px solid #d8c8b8;
           background-color: white;
+
           color: var(--secondary-text-color);
           cursor: pointer;
         }
@@ -165,12 +169,12 @@
         width: 100%;
         border-radius: 6px;
         background-color: #313e2c;
-        color: #aaec8a;
+        color: #71cb44;
         box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
         transform: translateY(30px);
         opacity: 0;
         visibility: hidden;
-        animation: fade-in 3s linear;
+        animation: fade-in 2s linear;
 
         .notificationBody {
           display: flex;
@@ -213,7 +217,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        font-size: 0.8rem;
+        font-size: 1rem;
 
         .registerLink {
           background-color: transparent;

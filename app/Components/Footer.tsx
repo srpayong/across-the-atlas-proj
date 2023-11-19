@@ -11,7 +11,7 @@ const domine = Domine({
 export default function Footer() {
   return (
     <footer className="footer footer-center pt-10 mt-50 text-base-content rounded bg-secondary text-custom2">
-      <nav className="grid grid-flow-col gap-4">
+      <nav className="grid grid-flow-col gap-4 text-1xl">
         <Link href="/" className={domine.className}>
           Across the Atlas
         </Link>

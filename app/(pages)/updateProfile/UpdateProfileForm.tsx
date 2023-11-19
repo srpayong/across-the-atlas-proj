@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { User } from '../../../migrations/00000-createTableUsers';
@@ -13,6 +14,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
   user,
   onClose,
 }) => {
+  const router = useRouter();
   const [newProfileData, setNewProfileData] = useState({
     username: user.username,
     email: user.email,
@@ -103,6 +105,8 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
         if (fileInputRef.current) {
           fileInputRef.current.value = '';
         }
+
+        router.refresh();
       } else {
         // Handle error response
         const errorData = await updateResponse.json();
@@ -121,7 +125,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
   return (
     <form
       onSubmit={handleOnSubmit}
-      className="relative flex flex-col items-center mx-auto p-4 space-y-2 border border-solid border-2 border-primary rounded-md w-[700px] h-[600px] bg-white z-10"
+      className="relative flex flex-col items-center mx-auto p-4 space-y-2 border-solid border-2 border-primary rounded-md w-[700px] h-[600px] bg-white z-10"
     >
       {/* Close button */}
       <button
@@ -140,7 +144,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
           name="username"
           value={newProfileData.username}
           onChange={handleOnChange}
-          className="border border-2 border-solid border-primary rounded-md p-2 text-sm"
+          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
         />
       </label>
 
@@ -151,7 +155,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
           name="email"
           value={newProfileData.email}
           onChange={handleOnChange}
-          className="border border-2 border-solid border-primary rounded-md p-2 text-sm"
+          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
         />
       </label>
 
@@ -162,7 +166,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
           name="profileName"
           value={newProfileData.profileName}
           onChange={handleOnChange}
-          className="border border-2 border-solid border-primary rounded-md p-2 text-sm"
+          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
         />
       </label>
 
@@ -172,7 +176,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
           name="bio"
           value={newProfileData.bio}
           onChange={handleOnChange}
-          className="border border-2 border-solid border-primary rounded-md p-2 text-sm"
+          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
         />
       </label>
 
@@ -184,7 +188,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
           ref={fileInputRef}
           onChange={handleImageChange}
           accept="image/*"
-          className="border border-2 border-solid border-primary rounded-md p-2 text-sm"
+          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
         />
         {/* Display the image preview */}
         <div className="mt-2">
@@ -197,7 +201,7 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
               className="rounded-full"
             />
           ) : (
-            <div className="rounded-full border border-2 border-solid border-primary h-60 w-60 bg-default-image"></div>
+            <div className="rounded-full border-2 border-solid border-primary h-60 w-60 bg-default-image"></div>
           )}
         </div>
       </label>

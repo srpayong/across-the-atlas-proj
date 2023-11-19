@@ -34,12 +34,8 @@ export default function ProfilePage(props: Props) {
     setIsEditing(true);
   };
 
-  const handleSaveSuccess = async () => {
+  const handleSaveSuccess = () => {
     setIsEditing(false);
-
-    // Reload the page to reflect the changes
-    await router.replace(router.asPath, undefined, { scroll: false });
-    window.location.reload();
   };
 
   const handleCloseClick = () => {
@@ -47,22 +43,23 @@ export default function ProfilePage(props: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[400px] border-primary">
-      <div className="avatar p-10 gap-20 bg-white rounded-lg shadow-md text-center">
-        <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden mx-auto">
+    <div className="flex flex-col items-center justify-center w-[500px] h-[400px] border-primary pt-20 mb-20">
+      <div className="avatar p-10 gap-10 bg-white rounded-lg shadow-md text-center">
+        <div className="w-80 h-60 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden mx-auto">
           {props.user.imageUrl ? (
             <Image
               src={props.user.imageUrl}
-              width={300}
-              height={300}
+              width={150}
+              height={150}
               alt="Profile avatar"
+              className="rounded-full object-cover w-full h-full"
             />
           ) : (
             <div>Default Image</div>
           )}
         </div>
 
-        <div>
+        <div className="mt-4">
           <h1 className="text-4xl font-bold">
             {capitalizeName(props.user.profileName)}
           </h1>
@@ -78,7 +75,7 @@ export default function ProfilePage(props: Props) {
           ) : (
             props.currentUser.username === props.user.username && (
               <button
-                className="mt-3 w-[150px] h-[40px] bg-primary text-white rounded-md"
+                className="mt-6 w-[150px] h-[40px] bg-primary text-white rounded-md"
                 onClick={handleEditClick}
               >
                 Edit profile
