@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { MdOutlineCategory } from 'react-icons/md';
-import { VscLocation } from 'react-icons/vsc';
 import { getBlogById } from '../../../../database/blogs';
 import { getFavourites } from '../../../../database/favourites';
 import { getReviewsWithUserInfo } from '../../../../database/reviews';
@@ -19,8 +18,8 @@ import LikeTrip from './LikeTrips';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: { default: 'Across the Atlas' },
-  description: 'Lorem ipsum',
+  title: { default: 'Across the Atlas | Blog' },
+  description: 'Adventure is worthwhile.',
 };
 
 export default async function SingleBlogPage(props) {
@@ -79,10 +78,7 @@ export default async function SingleBlogPage(props) {
             </div>
             <p className={styles.blogBio}>{singleBlog.description}</p>
             <div className={styles.locationAndBlogger}>
-              <p>
-                <VscLocation />
-                {singleBlog.location}
-              </p>
+              <p>{singleBlog.location}</p>
             </div>
           </div>
         </div>
@@ -124,23 +120,23 @@ export default async function SingleBlogPage(props) {
       </div>
 
       {/* ************* REVIEWS SECTION ************* */}
-      <div className="mx-auto w-11/12 max-w-screen-lg">
+      <div className="mx-auto w-11/12 max-w-screen-lg mt-30px">
         {/* Left side with reviews, h1, and input box */}
-        <div className="w-full p-4 border border-gray-300 rounded-md">
-          <h1 className={`{domine.className} text-3xl`}>
-            What other users have been saying:
-          </h1>
-          <div className="h-80 overflow-y-auto border p-8">
+        <h2 className="text-3xl mb-8px text-center mt-10">
+          What other members have been saying:
+        </h2>
+        <div className="w-full mt-30 p-2 border-2 border-accent rounded-lg">
+          <div className="h-80 overflow-y-auto  p-8 ">
             {/* Scrollable box for comments */}
             <div className="space-y-4">
               {userReviews.map((review, index) => (
                 <div
                   key={`review-div-${review.reviewId}`}
-                  className={`flex items-center border-5 rounded-m space-x-4 ${
-                    index % 2 === 0 ? 'bg-white' : 'bg-gray-100'
+                  className={`flex items-center rounded-lg space-x-4 ${
+                    index % 2 === 0 ? 'bg-white' : 'bg-accent'
                   }`}
                 >
-                  <div className="w-24 h-24 overflow-hidden rounded-full bg-accent">
+                  <div className="w-28 h-28 overflow-hidden rounded-full bg-accent">
                     <img
                       src={review.userImageUrl}
                       className="object-cover w-full h-full"
@@ -158,12 +154,11 @@ export default async function SingleBlogPage(props) {
             </div>
           </div>
           {/* Input box */}
-          <div className="mt-4 flex items-center justify-center">
+          <div className="mx-auto flex items-center justify-center">
             <AddReviews
               blog={singleBlog}
               user={user}
               userReviews={userReviews}
-              className="bg-secondary"
             />
           </div>
         </div>

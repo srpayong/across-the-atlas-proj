@@ -6,8 +6,6 @@ import React from 'react';
 import UpdateProfileForm from '../(pages)/updateProfile/UpdateProfileForm';
 import { capitalizeName } from './capitalizedName';
 
-// ... (imports remain unchanged)
-
 type Props = {
   currentUser: {
     id: number;
@@ -30,18 +28,18 @@ type Props = {
 
 export default function ProfilePage(props: Props) {
   const router = useRouter();
-  const [isEditing, setIsEditing] = React.useState(false);
+  const [isEditing, setIsEditing] = React.useState<boolean>(false);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
-  const handleSaveSuccess = () => {
+  const handleSaveSuccess = async () => {
     setIsEditing(false);
 
-    router.replace(router.asPath, undefined, { scroll: false }).then(() => {
-      window.location.reload();
-    });
+    // Reload the page to reflect the changes
+    await router.replace(router.asPath, undefined, { scroll: false });
+    window.location.reload();
   };
 
   const handleCloseClick = () => {

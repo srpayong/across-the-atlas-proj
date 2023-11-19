@@ -105,7 +105,7 @@ export default function RegisterForm() {
       <div className={styles.form}>
         <div className={styles.greeting}>
           <h1>Welcome</h1>
-          <p className={styles.registerMessage}>Hello</p>
+          <p className={styles.registerMessage}>Create an account</p>
         </div>
 
         <form onSubmit={handleOnSubmit} id="login" className={styles.loginForm}>

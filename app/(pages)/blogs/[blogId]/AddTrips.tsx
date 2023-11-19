@@ -96,7 +96,7 @@ export default function AddTripsForm(props: Props) {
       <div className={styles.formContainer}>
         {props.user.id === props.blog.userId && (
           <div className={styles.innerContainer}>
-            <h4>Write a Blog Entry</h4>
+            <h1 className="text-3xl pb-8">Write a Blog Entry</h1>
             <form onSubmit={handleOnSubmit} className={styles.uploadTripForm}>
               <div className={styles.leftSide}>
                 <div>

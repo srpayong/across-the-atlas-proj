@@ -1,6 +1,7 @@
 import './globals.css';
 import { Domine, Questrial } from 'next/font/google';
 import { cookies } from 'next/headers';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillShop } from 'react-icons/ai';
 import { BsFillPersonFill, BsPersonPlus } from 'react-icons/bs';
@@ -26,8 +27,8 @@ export const domine = Domine({
 });
 
 export const metadata = {
-  title: 'Across the Atlas',
-  description: 'Lorem Ipsum',
+  title: 'Across the Atlas | Home',
+  description: 'Adventure is worthwhile.',
 };
 
 type LayoutProps = {
@@ -45,13 +46,17 @@ export default async function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <head>
-        <meta />
+        <meta charSet="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" type="image/png" />
       </head>
       <body className="bg-custom2 text-primary">
         <nav className={styles.navigationBar}>
           <NavBar />
           <div className={`${styles.logo} ${domine.className}`}>
-            <Link href="/">Across the Atlas</Link>
+            {/* Use the Image component directly inside the Link */}
+            <Link href="/">
+              <Image src="/logo1.png" alt="Logo" width={50} height={50} />
+            </Link>
           </div>
           <div className={styles.desktopLoginButtons}>
             {user ? (

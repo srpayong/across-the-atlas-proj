@@ -148,7 +148,9 @@ export default function CreateBlog(props: Props) {
       </div>
 
       <div>
-        <button>Create blog</button>
+        <button className="border-dashed border-2 bg-accent">
+          Create blog
+        </button>
       </div>
       <div style={{ color: 'red' }}>{error}</div>
       {success && (

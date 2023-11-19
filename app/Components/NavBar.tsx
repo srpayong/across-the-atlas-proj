@@ -13,7 +13,11 @@ export default function NavBar() {
 
   return (
     <>
-      <div className={`${styles.nav} ${menuOpen ? styles[`navOpen`] : {}}`}>
+      <div
+        className={`${styles.nav} ${menuOpen ? styles[`navOpen`] : {}} ${
+          styles.sticky
+        }`}
+      >
         <ul className={styles.navLinks}>
           <li className={styles.navList}>
             <Link href="/">Home</Link>
@@ -29,7 +33,7 @@ export default function NavBar() {
               <ul className={styles.discoverLink}>
                 <li>
                   <Link href="/blogs" className={styles.discoverList}>
-                    Bloggers
+                    Blogs
                   </Link>
                 </li>
                 <li>
@@ -42,7 +46,7 @@ export default function NavBar() {
           </li>
 
           <li className={styles.navList}>
-            <Link href="/about">About Us</Link>
+            <Link href="/about">About</Link>
           </li>
           <li className={styles.navList}>
             <Link href="/contact">Contact Us</Link>

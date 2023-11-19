@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Domine:wght@500&family=Lato:wght@300&family=Nunito&family=Open+Sans&family=Playfair+Display&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap');
+
 .navigation {
   display: flex;
 }
@@ -10,7 +12,16 @@
 }
 
 .navigationBar {
-  position: absolute;
+  // position: absolute;
+  // width: 100%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  // padding: 20px;
+  // flex: 1;
+  // z-index: 9;
+  position: fixed;
+  top: 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -18,6 +29,17 @@
   padding: 20px;
   flex: 1;
   z-index: 9;
+  background-color: rgba(216, 200, 184, 0.7);
+  backdrop-filter: blur(20px);
+  color: rgb(143, 109, 69);
+  font-size: 1.2rem;
+  font-family: 'Playfair Display', sans-serif;
+
+  &.sticky {
+    position: fixed;
+    background-color: #fff; /* Add your desired background color for the sticky state */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
   .nav {
     display: flex;
@@ -29,11 +51,13 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
+      font-size: 1.2 rem;
 
       .navList {
         list-style: none;
         position: relative;
         text-decoration: none;
+        font-size: 1.2 rem;
 
         &::before {
           content: '';

@@ -110,7 +110,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect, router } from 'next/navigation';
 import { getFavouriteByUserId } from '../../database/favourites';
 import { getUserBySessionToken, getUserByUsername } from '../../database/users';
 import { User } from '../../migrations/00000-createTableUsers';
@@ -123,7 +123,7 @@ import ProfilePage from './ProfilePage';
 
 export const metadata = {
   title: { default: 'Across the Atlas | Home' },
-  description: 'Lorem Ipsum',
+  description: 'Adventure is worthwhile.',
 };
 
 export type ProfilePageProps = {
@@ -165,8 +165,8 @@ export default async function UserProfilePage({ params }: ProfilePageProps) {
     <section className={styles.profileContainerBox}>
       <ProfilePage user={user} currentUser={currentUser} />
       <div className={styles.favouritesContainer}>
-        <h1 className={domine.className}>
-          {capitalizeName(user.profileName)}'s favourite bloggers
+        <h1 className="text-2xl text-center mb-4 mx-auto">
+          {capitalizeName(user.profileName)}'s favourites:
         </h1>
         {favourites.length === 0 ? (
           <p>Favourite section empty</p>

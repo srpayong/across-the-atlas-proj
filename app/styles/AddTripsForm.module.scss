@@ -48,6 +48,7 @@
             border-radius: 8px;
             border: 1px solid var(--main-color);
             padding-left: 8px;
+            color: #d8c8b8;
           }
 
           textarea {
@@ -67,8 +68,9 @@
             gap: 16px;
             height: 40px;
             border-radius: 8px;
-            border: 0.5px solid rgb(226, 221, 217);
+            border: 0.5px solid gray;
             padding: 0px;
+            color: #8d7966;
           }
 
           .tripPicInput::file-selector-button {

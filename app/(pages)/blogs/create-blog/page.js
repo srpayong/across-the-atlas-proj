@@ -9,7 +9,7 @@ import CreateBlog from './CreateBlog';
 
 export const metadata = {
   title: { default: 'Across the Atlas' },
-  description: 'Lorem Ipsum',
+  description: 'Adventure is worthwhile.',
 };
 
 export default async function CreateBlogPage() {

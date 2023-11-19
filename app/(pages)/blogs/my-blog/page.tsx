@@ -12,8 +12,8 @@ import styles from '../../../styles/allBlogsPage.module.scss';
 import DeleteUserBlog from './DeleteUserBlog'; //
 
 export const metadata = {
-  title: { default: 'Across the Atlas' },
-  description: 'Lorem Ipsum',
+  title: { default: 'Across the Atlas | My Profile' },
+  description: 'Adventure is worthwhile. ',
 };
 
 export default async function MyBlogPage() {

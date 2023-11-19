@@ -4,6 +4,7 @@
   gap: 16px;
   // min-height: 30vh;
   flex-direction: column;
+  margin-top: 10px;
 
   .blogsPageTitle {
     display: flex;
@@ -25,6 +26,7 @@
       border: 1px solid rgb(168, 163, 157);
       min-height: 200px;
       padding: 5px;
+      margin-top: 10px;
 
       &:hover {
         transform: scale(1.05);
@@ -114,7 +116,7 @@
 
   .blogCard {
     width: 300px;
-    border: 1px solid whitesmoke;
+    border: 1px solid #d8c8b8;
     border-radius: 10px;
     display: flex;
     flex-direction: column;

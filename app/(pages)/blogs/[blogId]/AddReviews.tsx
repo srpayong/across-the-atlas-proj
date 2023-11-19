@@ -37,17 +37,21 @@ export default function AddReviewsToBlog(props: Props) {
           router.refresh();
         }}
       >
-        <input
+        <textarea
           maxLength={1000}
           value={review}
           onChange={(event) => setReview(event.currentTarget.value)}
           placeholder="Write something..."
+          // className="rounded bg-secondary h-[100]"
           style={{
             color: 'darkbrown',
             fontSize: '16px',
             backgroundColor: '#E2DDD9',
-            width: '600px',
-            height: '80px',
+            width: '500px',
+            height: '100px',
+            marginTop: '20px',
+            borderRadius: '10px',
+            border: 'none',
           }}
         />
 
@@ -55,10 +59,12 @@ export default function AddReviewsToBlog(props: Props) {
           onClick={() => {
             router.refresh();
           }}
+          className=" font-bold font-10px mb-6 px-6 rounded"
         >
           <AiOutlineSend />
         </button>
       </form>
+
       <div>{error}</div>
     </>
   );

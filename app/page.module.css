@@ -10,3 +10,9 @@
 .animateFadeIn {
   animation: fadeIn 1.5s ease-in-out;
 }
+
+/* page.module.css */
+.border-image {
+  width: 100%;
+  height: 100;
+}

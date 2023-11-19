@@ -9,7 +9,7 @@ const domine = Domine({ subsets: ['latin'] });
 
 export const metadata = {
   title: { default: 'Across the Atlas | Blogs' },
-  description: 'Lorem Ipsum',
+  description: 'Adventure is worthwhile.',
 };
 
 export default async function BlogsPage() {
@@ -26,9 +26,7 @@ export default async function BlogsPage() {
                   <p className={`${styles.blogName} ${domine.className}`}>
                     {blog.name}
                   </p>
-                  <p className={styles.blogLocation}>
-                    Based in {blog.location}
-                  </p>
+                  <p className={styles.blogLocation}>{blog.location}</p>
                 </div>
                 <div className={styles.imageContainer}>
                   <Image

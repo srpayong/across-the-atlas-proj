@@ -66,7 +66,8 @@ export default function FilteredTripsPage({ trips }: Props) {
               </div>
               <div className={styles.bottomSection}>
                 <p>
-                  <MdOutlineCategory /> {trip.category}
+                  {/* <MdOutlineCategory /> */}
+                  {trip.category}
                 </p>
               </div>
             </div>
