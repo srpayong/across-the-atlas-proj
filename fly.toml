@@ -1,4 +1,4 @@
-app = "final-project_fall_2023_vienna_austria"
+app = "final-project-fall-2023-vienna-austria"
 primary_region = "otp"
 
 # Apps without volume: Comment out the [mounts] configuration below
