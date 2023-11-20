@@ -10,7 +10,7 @@ primary_region = "otp"
   PORT = "8080"
   CLOUDINARY_API_KEY="xxxxxxxxxxxxx"
   CLOUDINARY_API_SECRET="xxxxxxxxxxxxx"
-  DATABASE_URL="postgresql://final_project_fall_2023_vienna_austria:final_project_fall_2023_vienna_austria@localhost:5432/final_project_fall_2023_vienna_austria"
+  DATABASE_URL="xxxxxxxxxxxxx"
 
 [http_service]
   internal_port = 8080
