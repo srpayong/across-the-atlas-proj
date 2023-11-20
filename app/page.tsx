@@ -77,16 +77,13 @@ export default function Home() {
             <br />
             <br />
             <p
-              className="text-2xl font-serif animate-fadeIn block text-custom1"
+              className="text-2xl font-serif animate-fadeIn block text-pimary"
               style={{ animationDelay: '0.5s' }}
             >
               Across the Atlas is a unique online travel diary for travellers
-              across the world. intended to bring together a number of Travel
-              Bloggers from around the world in one place, exposing their
-              content and experiences to as wide an audience as possible. This
-              is a community of like-minded travel professionals around the
-              world who share the same passion for traveling the world with
-              global compassion, an open mind, and an open heart.
+              across the world. This is a community of like-minded travel
+              professionals around the world who share the same passion for
+              traveling the world.
             </p>
           </div>
         </div>
@@ -139,7 +136,7 @@ export default function Home() {
             <input type="checkbox" id="accordion-1" />
             <label
               htmlFor="accordion-1"
-              className="collapse-title text-xl font-medium  cursor-pointer bg-custom1 text-primary"
+              className="collapse-title text-xl font-medium  cursor-pointer text-primary"
             >
               What types of travel content are allowed?
             </label>
