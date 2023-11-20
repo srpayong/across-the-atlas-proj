@@ -46,8 +46,11 @@ export default async function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/icon-apple-touch.png" />
+        <link rel="manifest" href="/manifest.json" />
         <meta charSet="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" type="image/png" />
       </head>
       <body className="bg-custom2 text-primary">
         <nav className={styles.navigationBar}>
