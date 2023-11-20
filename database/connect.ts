@@ -1,5 +1,6 @@
 import 'server-only';
-import { unstable_noStore as noStore } from 'next/cache';
+// import { unstable_noStore as noStore } from 'next/cache';
+import { headers } from 'next/headers';
 import postgres, { Sql } from 'postgres';
 import { setEnvironmentVariables } from '../util/config.mjs';
 
@@ -30,10 +31,21 @@ function connectOneTimeToDatabase() {
   // Dynamic Rendering
   //
   // https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic-rendering
+  //   return ((
+  //     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
+  //   ) => {
+  //     noStore();
+  //     return globalThis.postgresSqlClient(...sqlParameters);
+  //   }) as typeof globalThis.postgresSqlClient;
+  // }
+
+  // // Connect to PostgreSQL
+  // export const sql = connectOneTimeToDatabase();
+
   return ((
     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
   ) => {
-    noStore();
+    headers();
     return globalThis.postgresSqlClient(...sqlParameters);
   }) as typeof globalThis.postgresSqlClient;
 }
