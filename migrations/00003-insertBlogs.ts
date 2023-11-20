@@ -46,18 +46,36 @@ export const blogs = [
 export async function up(sql: Sql) {
   for (const blog of blogs) {
     await sql`
-    INSERT INTO blogs
-      (name, description, website_url, location, image_url, user_id, username)
-    VALUES
-      (${blog.name}, ${blog.description}, ${blog.websiteUrl}, ${blog.location}, ${blog.imageUrl}, ${blog.userId}, ${blog.username})
-  `;
+      INSERT INTO
+        blogs (
+          name,
+          description,
+          website_url,
+          location,
+          image_url,
+          user_id,
+          username
+        )
+      VALUES
+        (
+          ${blog.name},
+          ${blog.description},
+          ${blog.websiteUrl},
+          ${blog.location},
+          ${blog.imageUrl},
+          ${blog.userId},
+          ${blog.username}
+        )
+    `;
   }
 }
 
 export async function down(sql: Sql) {
   for (const blog of blogs) {
     await sql`
-      DELETE FROM blogs WHERE id = ${blog.id}
-  `;
+      DELETE FROM blogs
+      WHERE
+        id = ${blog.id}
+    `;
   }
 }

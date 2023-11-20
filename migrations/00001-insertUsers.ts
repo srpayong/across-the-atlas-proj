@@ -43,18 +43,34 @@ export const users = [
 export async function up(sql: Sql) {
   for (const user of users) {
     await sql`
-    INSERT INTO users
-      (username, email, password_hash, profile_name, bio, image_url)
-    VALUES
-      (${user.username}, ${user.email},${user.passwordHash}, ${user.profileName}, ${user.bio},  ${user.imageUrl})
-  `;
+      INSERT INTO
+        users (
+          username,
+          email,
+          password_hash,
+          profile_name,
+          bio,
+          image_url
+        )
+      VALUES
+        (
+          ${user.username},
+          ${user.email},
+          ${user.passwordHash},
+          ${user.profileName},
+          ${user.bio},
+          ${user.imageUrl}
+        )
+    `;
   }
 }
 
 export async function down(sql: Sql) {
   for (const user of users) {
     await sql`
-      DELETE FROM users WHERE id = ${user.id}
-  `;
+      DELETE FROM users
+      WHERE
+        id = ${user.id}
+    `;
   }
 }

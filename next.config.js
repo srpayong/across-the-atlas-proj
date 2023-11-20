@@ -2,7 +2,12 @@
 const nextConfig = {
   experimental: {
     typedRoutes: true,
+    // serverActions: true,
   },
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
+
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -10,5 +15,4 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 };
-
-module.exports = nextConfig;
+export default nextConfig;

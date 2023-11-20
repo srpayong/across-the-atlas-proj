@@ -9,17 +9,16 @@ export type Review = {
 
 export async function up(sql: Sql) {
   await sql`
-    CREATE TABLE reviews (
-      id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      content varchar(500) NOT NULL,
-      user_id integer REFERENCES users (id) ON DELETE CASCADE,
-      blog_id integer REFERENCES blogs (id)
-    )
+    CREATE TABLE
+      reviews (
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        content VARCHAR(500) NOT NULL,
+        user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
+        blog_id INTEGER REFERENCES blogs (id)
+      )
   `;
 }
 
 export async function down(sql: Sql) {
-  await sql`
-    DROP TABLE reviews
-  `;
+  await sql` DROP TABLE reviews `;
 }

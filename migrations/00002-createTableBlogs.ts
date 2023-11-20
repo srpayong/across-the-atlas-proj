@@ -13,21 +13,22 @@ export type Blog = {
 
 export async function up(sql: Sql) {
   await sql`
-    CREATE TABLE blogs (
-      id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      name varchar(30) NOT NULL,
-      description varchar(500) NOT NULL,
-      website_url varchar(80) NOT NULL,
-      location varchar(40) NOT NULL,
-      image_url varchar(500) NOT NULL,
-      user_id integer REFERENCES users (id) ON DELETE CASCADE,
-      username varchar(80) REFERENCES users (username)
-    )
+    CREATE TABLE
+      blogs (
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        name VARCHAR(30) NOT NULL,
+        description VARCHAR(500) NOT NULL,
+        website_url VARCHAR(80) NOT NULL,
+        location VARCHAR(40) NOT NULL,
+        image_url VARCHAR(500) NOT NULL,
+        user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
+        username VARCHAR(80) REFERENCES users (
+          username
+        )
+      )
   `;
 }
 
 export async function down(sql: Sql) {
-  await sql`
-    DROP TABLE blogs
-  `;
+  await sql` DROP TABLE blogs `;
 }
