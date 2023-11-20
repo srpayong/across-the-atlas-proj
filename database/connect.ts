@@ -16,7 +16,7 @@ function connectOneTimeToDatabase() {
   if (!('postgresSqlClient' in globalThis)) {
     globalThis.postgresSqlClient = postgres({
       ssl: {
-        rejectUnuthorized: Boolean(process.env.POSTGRES_URL),
+        rejectUnauthorized: Boolean(process.env.POSTGRES_URL),
       },
       transform: {
         ...postgres.camel,
