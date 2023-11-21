@@ -59,12 +59,14 @@ export default function RegisterForm() {
       formData.append('upload_preset', 'uploads');
 
       const profilePic = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/image/upload`,
         {
           method: 'POST',
           body: formData,
         },
       ).then((r) => r.json());
+
+      // ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME} //for cloud name
 
       // console.log('submitting data:', {
       //   username,
