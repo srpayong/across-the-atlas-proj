@@ -1,6 +1,5 @@
 import 'server-only';
 import { unstable_noStore as noStore } from 'next/cache';
-// import { headers } from 'next/headers';
 import postgres, { Sql } from 'postgres';
 import { setEnvironmentVariables } from '../util/config.mjs';
 
@@ -15,9 +14,7 @@ declare module globalThis {
 function connectOneTimeToDatabase() {
   if (!('postgresSqlClient' in globalThis)) {
     globalThis.postgresSqlClient = postgres({
-      ssl: {
-        rejectUnauthorized: Boolean(process.env.POSTGRES_URL),
-      },
+      ssl: Boolean(process.env.POSTGRES_URL),
       transform: {
         ...postgres.camel,
         undefined: null,
