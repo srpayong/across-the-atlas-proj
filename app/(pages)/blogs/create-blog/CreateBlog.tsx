@@ -58,13 +58,14 @@ export default function CreateBlog(props: Props) {
       formData.append('upload_preset', 'uploads');
 
       const blogPic = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1//image/upload`,
         {
           method: 'POST',
           body: formData,
         },
       ).then((r) => r.json());
 
+      // ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME} // try
       const response = await fetch('/api/blogs', {
         method: 'POST',
         headers: {
