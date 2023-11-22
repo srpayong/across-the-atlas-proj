@@ -47,7 +47,7 @@ export default function AddReviewsToBlog(props: Props) {
           // className="rounded bg-secondary h-[100]"
           style={{
             color: '#2A2829',
-            fontSize: '24px',
+            fontSize: '20px',
             backgroundColor: '#E2DDD9',
             width: '500px',
             height: '100px',

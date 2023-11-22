@@ -113,8 +113,10 @@ export default async function SingleBlogPage({ params }: Props) {
                     <p className={`${styles.tripTitle} ${domine.className}`}>
                       {trip.tripName}
                     </p>
+
                     <LikeTrip />
                   </div>
+
                   <Image
                     src={trip.tripImageUrl}
                     width={100}
@@ -122,6 +124,10 @@ export default async function SingleBlogPage({ params }: Props) {
                     alt="trip"
                     className={styles.tripImage}
                   />
+                  <p style={{ display: 'flex', alignItems: 'center' }}>
+                    <FaLocationDot style={{ marginRight: '5px' }} />
+                    {singleBlog.location}
+                  </p>
                   <p className={styles.tripDescription}>
                     {trip.tripDescription}
                   </p>

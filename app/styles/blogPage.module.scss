@@ -194,24 +194,29 @@
         letter-spacing: 2px;
         text-transform: uppercase;
         align-items: center;
+        text-align: center;
+        padding-bottom: 10px;
       }
     }
 
     .tripImage {
       width: 200px;
       height: 200px;
+      padding-top: 5px;
       object-fit: cover;
+      padding-bottom: 5px;
       border-radius: 50%; /* Optional: for a circular image */
     }
 
     .tripDescription {
       padding: 8px;
+      margin-top: 10px;
       font-size: 0.9rem;
       // line-height: 1.25;
       align-items: center;
       display: flex;
       justify-content: center;
-      margin: 2px;
+      text-align: center;
     }
 
     .tripCategory {
