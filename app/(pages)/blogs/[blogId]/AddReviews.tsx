@@ -40,14 +40,14 @@ export default function AddReviewsToBlog(props: Props) {
         }}
       >
         <textarea
-          maxLength={1000}
+          maxLength={2000}
           value={review}
           onChange={(event) => setReview(event.currentTarget.value)}
           placeholder="Write something..."
           // className="rounded bg-secondary h-[100]"
           style={{
-            color: 'darkbrown',
-            fontSize: '16px',
+            color: '#2A2829',
+            fontSize: '24px',
             backgroundColor: '#E2DDD9',
             width: '500px',
             height: '100px',

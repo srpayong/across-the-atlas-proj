@@ -151,7 +151,19 @@ export default function AddTripsForm(props: Props) {
         setImageUrl(null);
 
         // Refresh the page
-        router.refresh();
+        //       router.refresh();
+        //     } catch (error) {
+        //       console.error('Error uploading image:', error);
+        //       setError('Error uploading image');
+        //     }
+        //   }
+        // };
+        window.location.reload();
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth', // You can use 'auto' or 'smooth' for scrolling behavior
+        });
       } catch (error) {
         console.error('Error uploading image:', error);
         setError('Error uploading image');
@@ -205,7 +217,7 @@ export default function AddTripsForm(props: Props) {
                   <label htmlFor="description">Description</label>
                   <textarea
                     id="decription"
-                    maxLength={500}
+                    maxLength={2000}
                     value={description}
                     onChange={(event) =>
                       setDescription(event.currentTarget.value)

@@ -71,6 +71,7 @@ export default function Home() {
             <h1 className="text-6xl font-semibold mb-2 animate-fadeIn">
               Across The Atlas
             </h1>
+
             <br />
             <h2 className="text-3xl text-italic mb-2 animate-fadeIn">
               The world's too big to tell just one story
@@ -99,8 +100,9 @@ export default function Home() {
             style={{
               padding: '20px',
               margin: '20px auto',
+              marginLeft: '60px',
               height: '500px',
-              width: '1200px',
+              width: '1300px',
               zIndex: 2,
               // boxShadow: '0 0 10px 10px gray',
               borderRadius: '5px',
@@ -187,7 +189,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute right-10 transform mb-10 z-0 h-[350px] w-[750px] rounded-lg mt-20">
+        <div className="absolute right-10 transform mb-10 z-0 h-[300px] w-[650px] rounded-lg mt-20">
           {/* Adjust the width as needed */}
           {/* Your video element */}
           <video

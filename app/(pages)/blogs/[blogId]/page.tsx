@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import { FaLocationDot } from 'react-icons/fa6';
 import { MdOutlineCategory } from 'react-icons/md';
 import { getBlogById } from '../../../../database/blogs';
 import { getFavourites } from '../../../../database/favourites';
@@ -90,7 +91,10 @@ export default async function SingleBlogPage({ params }: Props) {
             </div>
             <p className={styles.blogBio}>{singleBlog.description}</p>
             <div className={styles.locationAndBlogger}>
-              <p>{singleBlog.location}</p>
+              <p style={{ display: 'flex', alignItems: 'center' }}>
+                <FaLocationDot style={{ marginRight: '5px' }} />
+                {singleBlog.location}
+              </p>
             </div>
           </div>
         </div>
