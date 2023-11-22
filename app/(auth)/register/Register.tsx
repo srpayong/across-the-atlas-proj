@@ -8,7 +8,11 @@ import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx';
 import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
 import styles from '../../styles/loginPage.module.scss';
 
-export default function RegisterForm() {
+type Props = {
+  cloudName: string | undefined;
+};
+
+export default function RegisterForm(props: Props) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -58,15 +62,21 @@ export default function RegisterForm() {
       }
       formData.append('upload_preset', 'uploads');
 
+      // const profilePic = await fetch(
+      //   `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+      //   {
+      //     method: 'POST',
+      //     body: formData,
+      //   },
+      // ).then((r) => r.json());
+
       const profilePic = await fetch(
-        `https://api.cloudinary.com/v1_1/image/upload`,
+        `https://api.cloudinary.com/v1_1/${props.cloudName}/image/upload`,
         {
           method: 'POST',
           body: formData,
         },
       ).then((r) => r.json());
-
-      // ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
 
       // console.log('submitting data:', {
       //   username,

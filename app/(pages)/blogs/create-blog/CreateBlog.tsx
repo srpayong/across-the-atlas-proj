@@ -65,7 +65,6 @@ export default function CreateBlog(props: Props) {
         },
       ).then((r) => r.json());
 
-      // try
       const response = await fetch('/api/blogs', {
         method: 'POST',
         headers: {
