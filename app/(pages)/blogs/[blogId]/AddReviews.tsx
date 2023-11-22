@@ -35,7 +35,7 @@ export default function AddReviewsToBlog(props: Props) {
             setError(data.error);
             return;
           }
-
+          setReview('');
           router.refresh();
         }}
       >
@@ -57,12 +57,14 @@ export default function AddReviewsToBlog(props: Props) {
           }}
         />
 
-        <button
+        {/* <button
           onClick={() => {
             router.refresh();
           }}
           className=" font-bold font-10px mb-6 px-6 rounded"
-        >
+        > */}
+
+        <button type="submit" className="font-bold font-10px mb-6 px-6 rounded">
           <AiOutlineSend />
         </button>
       </form>

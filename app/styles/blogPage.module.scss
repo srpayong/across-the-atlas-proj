@@ -49,18 +49,20 @@
       align-items: center;
       gap: 5px;
       padding: 8px 0px;
-      // width: 100%;
+      width: 700px;
       min-height: 70px;
       margin: 5px;
       font-size: 1.2rem;
+      text-align: center;
 
       .linkAndFollow {
         display: flex;
-        width: 100%;
-        justify-content: space-between;
+        width: 400px;
+        justify-content: space-around;
         align-items: center;
+        text-align: center;
         font-size: 1rem;
-        margin-right: 8px;
+        // margin-right: 8px;
 
         .followButtonContainer {
           display: flex;
