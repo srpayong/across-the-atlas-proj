@@ -105,7 +105,7 @@
           padding: 0px 40px;
 
           h1 {
-            font-size: 1rem;
+            font-size: 1.8rem;
             text-transform: capitalize;
           }
 
@@ -116,12 +116,13 @@
             padding: 6px 12px;
             background-color: var(--main-color);
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            padding-bottom: 5px;
+            // padding-bottom: 20px;
             letter-spacing: 1.5px;
             cursor: pointer;
-            color: #8d7966;
+            color: #564c43;
+            padding-top: 10px;
           }
         }
 

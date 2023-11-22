@@ -335,11 +335,12 @@
 
 .loveButton {
   background-color: transparent;
-  border: none;
   cursor: pointer;
+  // color: red;
 
   .heartButton {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    // color: red;
   }
 
   .heartButtonRed {

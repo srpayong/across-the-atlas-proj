@@ -1,3 +1,4 @@
+import { ReviewsFromUsersInBlogs } from '/Users/srpayong/projects/final-project_fall_2023_vienna_austria/database/reviews';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { getFavourites } from '../../../../database/favourites';
 import { getReviewsWithUserInfo } from '../../../../database/reviews';
 import { getTripsWithInfo } from '../../../../database/trips';
 import { getUserBySessionToken } from '../../../../database/users';
+import { Blog } from '../../../../migrations/00002-createTableBlogs';
 import { domine } from '../../../layout';
 import styles from '../../../styles/blogPage.module.scss';
 import AddFavourites from './AddFavourites';
@@ -24,9 +26,11 @@ export const metadata = {
 
 type Props = {
   params: {
-    blogId: string;
-    cloudName: string;
+    blogId: number;
   };
+  cloudName: string;
+  userReviews: RowList<ReviewsFromUsersInBlogs[]>;
+  singleBlog: Blog;
 };
 
 export default async function SingleBlogPage({ params }: Props) {

@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Domine:wght@400;500;600;700&family=Questrial&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Domine:wght@500&family=Lato&family=Nunito&family=Open+Sans&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Domine:wght@500&family=Lato:wght@300&family=Nunito&family=Open+Sans&family=Playfair+Display&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@daisyui;
+@tailwind utilities;
+
+h1 {
+  font-family: 'Birthstone', sans-serif;
+}
+
+h2 {
+  font-family: 'DancingScript', cursive;
+}
+
+body {
+  font-family: 'Playfair Display', sans-serif;
+}
+
+nav {
+  font-family: 'Birthstone', sans-serif;
+}
+
 /* // @import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Domine:wght@400;500;600;700&family=Questrial&display=swap');
 
 // * {
@@ -38,34 +65,3 @@
 //   text-decoration: none;
 //   color: #ffffff;
 // } */
-
-@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Domine:wght@400;500;600;700&family=Questrial&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Domine:wght@500&family=Lato&family=Nunito&family=Open+Sans&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Domine:wght@500&family=Lato:wght@300&family=Nunito&family=Open+Sans&family=Playfair+Display&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap');
-
-/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Domine:wght@500&family=Lato:wght@300&family=Nunito&family=Open+Sans&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap'); */
-
-@tailwind base;
-@tailwind components;
-@daisyui;
-@tailwind utilities;
-
-/* @import url('https://fonts.googleapis.com/css2?family=Domine:wght@500&family=Lato&family=Nunito&family=Open+Sans&family=Roboto+Slab&family=Work+Sans:wght@300;400&display=swap'); */
-
-h1 {
-  font-family: 'Birthstone', sans-serif;
-}
-
-h2 {
-  font-family: 'DancingScript', cursive;
-}
-
-body {
-  font-family: 'Playfair Display', sans-serif;
-}
-
-nav {
-  font-family: 'Birthstone', sans-serif;
-}

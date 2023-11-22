@@ -1,5 +1,6 @@
 'use client';
 
+import { ReviewsFromUsersInBlogs } from '/Users/srpayong/projects/final-project_fall_2023_vienna_austria/database/reviews';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
@@ -7,6 +8,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 type Props = {
   user: { id: number };
   blog: { id: number };
+  userReviews: RowList<ReviewsFromUsersInBlogs[]>;
 };
 
 export default function AddReviewsToBlog(props: Props) {

@@ -2,7 +2,7 @@ import { cache } from 'react';
 import { Review } from '../migrations/00006-createTableReviews';
 import { sql } from './connect';
 
-type ReviewsFromUsersInBlogs = {
+export type ReviewsFromUsersInBlogs = {
   reviewId: number;
   reviewContent: string;
   userId: number;

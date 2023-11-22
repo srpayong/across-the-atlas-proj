@@ -9,6 +9,7 @@ import styles from '../../../styles/AddTripsForm.module.scss';
 type Props = {
   user: { id: number };
   blog: Blog;
+  singleBlog: Blog;
   cloudName: string | undefined;
 };
 
@@ -56,40 +57,105 @@ export default function AddTripsForm(props: Props) {
       }
       formData.append('upload_preset', 'uploads');
 
-      const tripPic = await fetch(
-        `https://api.cloudinary.com/v1_1/
-        ${props.cloudName}/image/upload`,
-        {
+      // const tripPic = await fetch(
+      //   `https://api.cloudinary.com/v1_1/${props.cloudName}/image/upload`,
+      //   {
+      //     method: 'POST',
+      //     body: formData,
+      //   },
+      // ).then((r) => {
+      //   console.log('Cloudinary Response:', r);
+      //   return r.json();
+      // }
+
+      //     );
+      //     const cloudinaryResponse = await tripPic.json();
+      //     console.log('Cloudinary Response:', cloudinaryResponse);
+
+      //     const response = await fetch('/api/trips', {
+      //       method: 'POST',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify({
+      //         userId: props.user.id,
+      //         blogId: props.blog.id,
+      //         name,
+      //         category,
+      //         location,
+      //         description,
+      //         imageUrl: tripPic.secure_url,
+      //       }),
+      //     });
+
+      //     const data = await response.json();
+
+      //     if ('error' in data) {
+      //       setError(data.error);
+      //       return;
+      //     }
+
+      //     setSuccess(true);
+      //     router.refresh();
+      //   }
+      // };
+
+      try {
+        const tripPicResponse = await fetch(
+          `https://api.cloudinary.com/v1_1/${props.cloudName}/image/upload`,
+          {
+            method: 'POST',
+            body: formData,
+          },
+        );
+        console.log('Cloudinary Response:', tripPicResponse);
+        if (!tripPicResponse.ok) {
+          // Handle the case where the Cloudinary upload fails
+          setError('Error uploading image to Cloudinary');
+          return;
+        }
+
+        const tripPicData = await tripPicResponse.json();
+        const tripPic = tripPicData.secure_url;
+
+        const response = await fetch('/api/trips', {
           method: 'POST',
-          body: formData,
-        },
-      ).then((r) => r.json());
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: props.user.id,
+            blogId: props.blog.id,
+            name,
+            category,
+            location,
+            description,
+            imageUrl: tripPic,
+          }),
+        });
 
-      const response = await fetch('/api/trips', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userId: props.user.id,
-          blogId: props.blog.id,
-          name,
-          category,
-          location,
-          description,
-          imageUrl: tripPic.secure_url,
-        }),
-      });
+        const data = await response.json();
 
-      const data = await response.json();
+        if ('error' in data) {
+          setError(data.error);
+          return;
+        }
 
-      if ('error' in data) {
-        setError(data.error);
-        return;
+        setSuccess(true);
+
+        // Clear the form
+        setName('');
+        setCategory('');
+        setLocation('');
+        setDescription('');
+        setImageUrl(null);
+
+        // Refresh the page
+        router.refresh();
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        setError('Error uploading image');
       }
-
-      setSuccess(true);
-      router.refresh();
     }
   };
 
