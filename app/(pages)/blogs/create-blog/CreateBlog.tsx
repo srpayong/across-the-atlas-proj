@@ -10,6 +10,7 @@ import styles from '../../../styles/CreateBlogForm.module.scss';
 type Props = {
   userId: number;
   blogs: Blog[];
+  cloudName: string | undefined;
 };
 
 export default function CreateBlog(props: Props) {
@@ -58,7 +59,7 @@ export default function CreateBlog(props: Props) {
       formData.append('upload_preset', 'uploads');
 
       const blogPic = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${props.cloudName}/image/upload`,
         {
           method: 'POST',
           body: formData,

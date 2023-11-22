@@ -9,6 +9,7 @@ import styles from '../../../styles/AddTripsForm.module.scss';
 type Props = {
   user: { id: number };
   blog: Blog;
+  cloudName: string | undefined;
 };
 
 export default function AddTripsForm(props: Props) {
@@ -57,7 +58,7 @@ export default function AddTripsForm(props: Props) {
 
       const tripPic = await fetch(
         `https://api.cloudinary.com/v1_1/
-        ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        ${props.cloudName}/image/upload`,
         {
           method: 'POST',
           body: formData,

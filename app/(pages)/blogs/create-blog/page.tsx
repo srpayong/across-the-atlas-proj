@@ -12,7 +12,12 @@ export const metadata = {
   description: 'Adventure is worthwhile.',
 };
 
-export default async function CreateBlogPage() {
+type Props = {
+  cloudName: string;
+};
+
+export default async function CreateBlogPage(props: Props) {
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   // allowing access to only authorised user
   const sessionToken = cookies().get('sessionToken');
   const session =
@@ -41,7 +46,12 @@ export default async function CreateBlogPage() {
         <h4>Create an account</h4>
       </div>
       <div className={styles.createBlogFormContainer}>
-        <CreateBlog blogs={blogs} userId={userId} blog={blog} />
+        <CreateBlog
+          blogs={blogs}
+          userId={userId}
+          blog={blog}
+          cloudName={cloudName}
+        />
       </div>
     </main>
   );

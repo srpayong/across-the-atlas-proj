@@ -22,8 +22,16 @@ export const metadata = {
   description: 'Adventure is worthwhile.',
 };
 
-export default async function SingleBlogPage(props) {
-  const singleBlog = await getBlogById(Number(props.params.blogId));
+type Props = {
+  params: {
+    blogId: string;
+    cloudName: string;
+  };
+};
+
+export default async function SingleBlogPage({ params }: Props) {
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const singleBlog = await getBlogById(Number(params.blogId));
 
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('sessionToken');
@@ -32,7 +40,7 @@ export default async function SingleBlogPage(props) {
     sessionToken && (await getUserBySessionToken(sessionToken.value));
 
   if (!user) {
-    return redirect(`/login?returnTo=/blogs/${props.params.blogId}`);
+    return redirect(`/login?returnTo=/blogs/${params.blogId}`);
   }
 
   if (!singleBlog) {
@@ -169,7 +177,12 @@ export default async function SingleBlogPage(props) {
 
       {/* ************* TRIPS FORM SECTION (for blog owner only)************* */}
       <div className="flex-grow p-4 mt-10 flex items-center justify-center">
-        <AddTrips singleBlog={singleBlog} user={user} blog={singleBlog} />
+        <AddTrips
+          singleBlog={singleBlog}
+          user={user}
+          blog={singleBlog}
+          cloudName={cloudName}
+        />
       </div>
     </main>
   );
