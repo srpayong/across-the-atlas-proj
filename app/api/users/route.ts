@@ -13,11 +13,11 @@ type UserResponseBodyDelete = { user: User } | Error;
 type UserResponseBodyPut = { user: User } | Error;
 
 // Configure Cloudinary with your credentials
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const userSchema = z.object({
   username: z.string(),

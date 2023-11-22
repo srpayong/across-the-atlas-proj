@@ -9,11 +9,11 @@ import { User } from '../../../../migrations/00000-createTableUsers';
 import { Error } from '../route';
 
 // Configure Cloudinary with your credentials
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 type UserResponseBodyPut = { user: User } | Error;
 

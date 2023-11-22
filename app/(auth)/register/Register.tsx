@@ -66,7 +66,7 @@ export default function RegisterForm() {
         },
       ).then((r) => r.json());
 
-      // ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME} //for cloud name
+      // ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
 
       // console.log('submitting data:', {
       //   username,

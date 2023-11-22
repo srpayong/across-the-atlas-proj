@@ -62,14 +62,12 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
 
         // Upload the new image to Cloudinary
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/image/upload`,
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
           {
             method: 'POST',
             body: formData,
           },
         );
-
-        // ${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME} try
 
         const data = await response.json();
         imageUrl = data.secure_url;

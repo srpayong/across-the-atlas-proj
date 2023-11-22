@@ -136,7 +136,7 @@ export default function Home() {
             <input type="checkbox" id="accordion-1" />
             <label
               htmlFor="accordion-1"
-              className="collapse-title text-xl font-medium  cursor-pointer text-primary"
+              className="collapse-title text-2xl font-medium  cursor-pointer text-primary"
             >
               What types of travel content are allowed?
             </label>
@@ -154,11 +154,11 @@ export default function Home() {
           <input type="checkbox" id="accordion-2" />
           <label
             htmlFor="accordion-2"
-            className="collapse-title text-xl font-medium cursor-pointer"
+            className="collapse-title text-2xl font-medium cursor-pointer"
           >
             Can I submit my travel blog posts to the community?
           </label>
-          <div className="collapse-content bg-custom1 rounded-md">
+          <div className="collapse-content rounded-md">
             <p>
               Absolutely! We encourage members to share their travel
               experiences. Once you're a member, you can submit your blog posts
@@ -171,7 +171,7 @@ export default function Home() {
           <input type="checkbox" id="accordion-3" />
           <label
             htmlFor="accordion-3"
-            className="collapse-title text-xl font-medium  cursor-pointer text-primary"
+            className="collapse-title text-2xl font-medium  cursor-pointer text-primary"
           >
             How can I join?
           </label>
@@ -186,7 +186,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute right-10 transform mb-10 z-0 h-[300px] w-[600px] rounded-lg mt-20">
+        <div className="absolute right-10 transform mb-10 z-0 h-[350px] w-[750px] rounded-lg mt-20">
           {/* Adjust the width as needed */}
           {/* Your video element */}
           <video
