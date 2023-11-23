@@ -49,7 +49,7 @@ export default async function UserProfilePage({ params }: ProfilePageProps) {
   const handleSaveSuccess = async () => {
     // Reload the page to reflect the changes
     await router.replace(router.asPath, undefined, { scroll: false });
-    router.refresh();
+    window.location.reload();
   };
 
   return (
