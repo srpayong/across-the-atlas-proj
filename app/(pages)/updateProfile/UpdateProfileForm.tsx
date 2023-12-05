@@ -123,75 +123,76 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
   };
 
   return (
-    <form
-      onSubmit={handleOnSubmit}
-      className="relative flex flex-col items-center mx-auto p-4 space-y-2 border-solid border-2 border-primary rounded-md w-[700px] h-[600px] bg-white z-10"
-    >
-      {/* Close button */}
-      <button
-        type="button"
-        onClick={onClose}
-        className="absolute top-0 right-0 text-primary p-2"
+    <div className="h-[300px] flex items-center justify-center mt-3">
+      <form
+        onSubmit={handleOnSubmit}
+        className="relative flex flex-col items-center p-4 space-y-2 border-solid border-2 border-primary rounded-md w-[500px] bg-white "
       >
-        <MdOutlineClose />
-      </button>
+        {/* Close button */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-0 right-0 text-primary p-2"
+        >
+          <MdOutlineClose />
+        </button>
 
-      {/* Rest of the form content */}
-      <label className="flex flex-col">
-        <span className="text-primary text-sm">Username:</span>
-        <input
-          type="text"
-          name="username"
-          value={newProfileData.username}
-          onChange={handleOnChange}
-          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
-        />
-      </label>
+        {/* Rest of the form content */}
+        <label className="flex flex-col text-custom2">
+          <span className="text-primary text-sm">Username:</span>
+          <input
+            type="text"
+            name="username"
+            value={newProfileData.username}
+            onChange={handleOnChange}
+            className="border-2 border-solid border-primary rounded-md p-2 text-sm"
+          />
+        </label>
 
-      <label className="flex flex-col">
-        <span className="text-primary text-sm">Email:</span>
-        <input
-          type="text"
-          name="email"
-          value={newProfileData.email}
-          onChange={handleOnChange}
-          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
-        />
-      </label>
+        <label className="flex flex-col text-custom2">
+          <span className="text-primary text-sm">Email:</span>
+          <input
+            type="text"
+            name="email"
+            value={newProfileData.email}
+            onChange={handleOnChange}
+            className="border-2 border-solid border-primary rounded-md p-2 text-sm"
+          />
+        </label>
 
-      <label className="flex flex-col">
-        <span className="text-primary text-sm">Profile Name:</span>
-        <input
-          type="text"
-          name="profileName"
-          value={newProfileData.profileName}
-          onChange={handleOnChange}
-          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
-        />
-      </label>
+        <label className="flex flex-col text-custom2">
+          <span className="text-primary text-sm">Profile Name:</span>
+          <input
+            type="text"
+            name="profileName"
+            value={newProfileData.profileName}
+            onChange={handleOnChange}
+            className="border-2 border-solid border-primary rounded-md p-2 text-sm"
+          />
+        </label>
 
-      <label className="flex flex-col">
-        <span className="text-primary text-sm">Bio:</span>
-        <textarea
-          name="bio"
-          value={newProfileData.bio}
-          onChange={handleOnChange}
-          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
-        />
-      </label>
+        <label className="flex flex-col text-custom2">
+          <span className="text-primary text-sm">Bio:</span>
+          <textarea
+            name="bio"
+            value={newProfileData.bio}
+            onChange={handleOnChange}
+            className="border-2 border-solid border-primary rounded-md p-2 text-sm"
+          />
+        </label>
 
-      {/* Input for the profile image */}
-      <label className="flex flex-col">
-        <input
-          type="file"
-          name="imageFile"
-          ref={fileInputRef}
-          onChange={handleImageChange}
-          accept="image/*"
-          className="border-2 border-solid border-primary rounded-md p-2 text-sm"
-        />
-        {/* Display the image preview */}
-        <div className="mt-2">
+        {/* Input for the profile image */}
+        <label className="flex flex-col">
+          <input
+            type="file"
+            name="imageFile"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            accept="image/*"
+            className="border-2 border-solid border-primary rounded-md p-2 text-sm"
+          />
+          {/* Display the image preview */}
+          {/* <div className="mt-2">
           {newProfileData.imageUrl ? (
             <img
               src={newProfileData.imageUrl}
@@ -203,21 +204,22 @@ const UpdateProfileForm: React.FC<UpdateProfileFormPage> = ({
           ) : (
             <div className="rounded-full border-2 border-solid border-primary h-60 w-60 bg-default-image"></div>
           )}
-        </div>
-      </label>
+        </div> */}
+        </label>
 
-      {/* Submit button */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-primary text-white rounded-md p-2"
-      >
-        {loading ? 'Updating...' : 'Save Changes'}
-      </button>
+        {/* Submit button */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-primary text-white rounded-md p-2"
+        >
+          {loading ? 'Updating...' : 'Save Changes'}
+        </button>
 
-      {/* Display an error if any */}
-      {error && <div className="text-red-500 text-sm">{error}</div>}
-    </form>
+        {/* Display an error if any */}
+        {error && <div className="text-red-500 text-sm">{error}</div>}
+      </form>
+    </div>
   );
 };
 
