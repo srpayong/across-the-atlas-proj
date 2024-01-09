@@ -107,8 +107,6 @@ export async function DELETE(
   return NextResponse.json({ blog: blog });
 }
 
-// ////////////////////////////////////////////
-
 export async function PUT(
   request: NextRequest,
   { params }: { params: Record<string, string | string[]> },

@@ -65,14 +65,6 @@ export async function POST(
     userWithPasswordHash.passwordHash,
   );
 
-  // check if valid
-  // console.log(
-  //   'is valid',
-  //   isPasswordValid,
-  //   result.data.password,
-  //   userWithPasswordHash.passwordHash,
-  // );
-
   if (!isPasswordValid) {
     return NextResponse.json(
       {

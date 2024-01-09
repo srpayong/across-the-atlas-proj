@@ -67,7 +67,7 @@ export default function Home() {
 
       <section className="relative z-20 py-20">
         <div className="relative flex items-center justify-center pt-10 h-[500px] w-full">
-          <div className="border-2 border-secondary p-20 text-center w-[800px] h-[600px] flex flex-col items-center justify-center">
+          <div className=" p-20 text-center w-[800px] h-[600px] flex flex-col items-center justify-center">
             <h1 className="text-6xl font-semibold mb-2 animate-fadeIn">
               Across The Atlas
             </h1>
@@ -94,7 +94,6 @@ export default function Home() {
       {/* Slider Section */}
       <section className="relative z-20 max-w-[1500px] pt-8 mb-20">
         <div className="flex items-center justify-center">
-          {/* Slider */}
           <div
             className="relative overflow-hidden rounded-sm"
             style={{
@@ -104,7 +103,7 @@ export default function Home() {
               height: '500px',
               width: '1300px',
               zIndex: 2,
-              // boxShadow: '0 0 10px 10px gray',
+
               borderRadius: '5px',
             }}
           >
@@ -190,8 +189,6 @@ export default function Home() {
         </div>
 
         <div className="absolute right-10 transform mb-10 z-0 h-[300px] w-[650px] rounded-lg mt-20">
-          {/* Adjust the width as needed */}
-          {/* Your video element */}
           <video
             className="w-full h-full object-cover rounded-lg"
             autoPlay
@@ -205,12 +202,10 @@ export default function Home() {
       </section>
 
       <section className="flex flex-col items-center justify-center  py-20">
-        {/* Heading */}
         <h2 className="text-5xl font-bold mb-8 text-center">Featured Blogs</h2>
 
         {/* Cards */}
         <div className="flex justify-evenly items-center gap-10 p-8 mx-auto">
-          {/* Card 1 */}
           <div className="card w-96 h-96 aspect-w-1 aspect-h-1 glass rounded-md">
             <figure>
               <img
@@ -233,7 +228,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 */}
           <div className="card w-96 h-96 aspect-w-1 aspect-h-1 glass rounded-md">
             <figure>
               <img
@@ -256,7 +250,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 3 */}
           <div className="card w-96 h-96 aspect-w-1 aspect-h-1 glass rounded-md">
             <figure>
               <img

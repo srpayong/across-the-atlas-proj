@@ -15,8 +15,12 @@ export default function Footer() {
         <Link href="/" className={domine.className}>
           Across the Atlas
         </Link>
-        <Link href="/about">About</Link>
-        <Link href="/">Contact Us</Link>
+        <Link href="/about" className={domine.className}>
+          About
+        </Link>
+        <Link href="/" className={domine.className}>
+          Contact Us
+        </Link>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">

@@ -21,18 +21,6 @@ export async function DELETE(
 
     const blogId = Number(params.myblogId);
 
-    console.log('Request received. BlogId:', params);
-
-    // if (isNaN(!blogId)) {
-    //   console.log('Invalid Blog Id:', blogId);
-    //   return NextResponse.json(
-    //     {
-    //       error: 'Invalid Blog Id',
-    //     },
-    //     { status: 400 },
-    //   );
-    // }
-
     const blog = await getBlogById(blogId);
 
     console.log('Blog:', blog);
